@@ -54,7 +54,6 @@ password
 # Models
 
  *User model*
- 
 - 
 
  *Task model*
