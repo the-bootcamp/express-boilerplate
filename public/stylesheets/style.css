@@ -5,3 +5,18 @@ body {
 a {
   color: #00b7ff;
 }
+
+
+/* Navbar */
+#navbarSupportedContent {
+  justify-content: space-between;
+}
+
+.nav-buttons {
+  display: flex;
+}
+
+.btn-signup,
+.btn-login {
+  margin-right: 8px;
+}
