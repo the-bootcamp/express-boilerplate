@@ -68,7 +68,7 @@ password
 
 # Trello
 
-Link to your trello board or picture of your physical board : 
+https://trello.com/b/hQDFuTNB/unum
 
 
 # Git
@@ -84,7 +84,3 @@ Deploy Link
 The url to your presentation slides
 
 Slides Link
-
-
-
-
