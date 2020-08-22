@@ -1,0 +1,12 @@
+title: String,
+level: {String, enum: ['Easy', 'Amateur', 'Professional' ]},
+ingredients: [ String],
+dishType: {String, enum: ['breakfast', 'starter','main_course', 'soup', 'snack', 'shake', 'dessert', 'other']},
+image: {type: String, default: ''},
+duration: {type: Number, min: 0},
+creator: String,
+created: {type: Date, default: Date.now},
+isVegan: Boolean,
+isVegetarian: Boolean,
+Description: String,
+premiumContent: String
