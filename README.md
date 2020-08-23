@@ -119,8 +119,9 @@ renders /error.hbs
       telephone: String, required: true, length: 9, 
       address: String, required: true, maxlength: 30,
       passwordHash: String, length: 6,
-      skillToOffer: Mixed,
-      jobToDone: Mixed,
+      type: String, required: true,
+      skills: Skill ids,
+      jobs: Job ids, 
     })
 
 
@@ -131,14 +132,18 @@ renders /error.hbs
       selectDescription: Mixed,
       image: String,
       additionalInformation: String, required: true,
+      jobowner: User id, required: true,
+      jobstatus: String, required: true,
+      allocation: User id,
     })
 
 
  *Skill model*
  
     new Schema ({
-      selectDescription: Mixed,
-      additionalInformation: String, required: true,
+      selectDescription: Mixed, required: true,
+      additionalInformation: String, 
+      skillprovider: User id, required: true,
     })
 
 
