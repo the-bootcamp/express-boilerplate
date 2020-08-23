@@ -112,17 +112,38 @@ renders /error.hbs
 # Models
 
  *User model*
- 
-- 
 
- *Task model*
+    new Schema ({
+      name: String, required: true,
+      email: String, required: true,
+      telephone: String, required: true, length: 9, 
+      address: String, required: true, maxlength: 30,
+      passwordHash: String, length: 6,
+      skillToOffer: Mixed,
+      jobToDone: Mixed,
+    })
+
+
+
+ *Job model*
  
-- 
+    new Schema ({
+      selectDescription: Mixed,
+      image: String,
+      additionalInformation: String, required: true,
+    })
 
 
  *Skill model*
  
-- 
+    new Schema ({
+      selectDescription: Mixed,
+      additionalInformation: String, required: true,
+    })
+
+
+
+
 #Figma
 https://www.figma.com/proto/qd2z6OeIE2ZV1RW38o45mz/Untitled?node-id=200%3A3&scaling=scale-down
 
