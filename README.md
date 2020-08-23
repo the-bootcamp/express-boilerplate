@@ -67,12 +67,20 @@ POST /jobowner/edit
 edits User Model
 renders /profile-jobowner with edited details
 
+POST /jobowner/delete
+deletes User model
+renders /index/delete.hbs
+
 GET /skillprovider/edit
 renders /profile-skillprovider/edit.hbs
 
 POST /skillprovider/edit
 edits User Model
 renders /profile-skillprovider with edited details
+
+POST /skillprovider/delete
+deletes User model
+renders /index/delete.hbs
 
 GET /jobslist
 renders job-list.hbs showing list of jobs from database
@@ -87,8 +95,7 @@ renders profile-skillprovider displaying new job under current jobs list
 
 GET /logout
 ends user session
-redirects to /index.hbs
-displays alert to confirm log-out
+redirects to /index/log-out.hbs
 
 GET /newjob
 renders /create-job.hbs
