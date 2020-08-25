@@ -5,7 +5,7 @@ const recipeSchema = new Schema(
   {
     title: String,
     level: {String, enum: ['Easy', 'Amateur', 'Professional' ]},
-    ingredients: [ String],
+    ingredients: [String],
     dishType: {String, enum: ['breakfast', 'starter','main_course', 'soup', 'snack', 'shake', 'dessert', 'other']},
     image: {type: String, default: ''},
     duration: {type: Number, min: 0},
@@ -13,7 +13,7 @@ const recipeSchema = new Schema(
     created: {type: Date, default: Date.now},
     isVegan: Boolean,
     isVegetarian: Boolean,
-    Description: String,
+    description: String,
     premiumContent: String
   },
   {
@@ -21,4 +21,4 @@ const recipeSchema = new Schema(
   }
 );
 
-module.exports = model('Example', recipeSchema);
+module.exports = model('Recipe', recipeSchema);
