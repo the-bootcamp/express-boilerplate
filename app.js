@@ -29,7 +29,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 // default value for title local
-app.locals.title = 'Express boilerplate made with love by your instructional team:) <3';
+app.locals.title = 'Foodle - Your favorite recipes from all over the world';
 
 // const index = require('./routes/index');
 // app.use('/', index);
@@ -37,6 +37,7 @@ app.locals.title = 'Express boilerplate made with love by your instructional tea
 //      |  |  |
 //      V  V  V
 app.use('/', require('./routes/index.routes'));
+app.use('/', require('./routes/recipes.routes'));
 
 
 module.exports = app;

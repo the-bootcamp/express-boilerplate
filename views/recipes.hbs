@@ -1,0 +1,10 @@
+<section id="recipes">
+  {{>navbar}}
+  <div class="container">
+    <div class="card-deck">
+      {{#each recipes}}
+        {{> recipeCard }}
+      {{/each}}
+    </div>
+  </div>
+</section>

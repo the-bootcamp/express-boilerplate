@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
@@ -6,8 +12,19 @@ a {
   color: #00b7ff;
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
 
-/* Navbar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 #navbarSupportedContent {
   justify-content: space-between;
 }
@@ -19,4 +36,53 @@ a {
 .btn-signup,
 .btn-login {
   margin-right: 8px;
+}
+
+/* Landing Page */
+
+#landingPage {
+  height: 100vh;
+  background-image: url('../images/foodle-landing-page.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landingPage--box {
+  max-width: 800px;
+  padding: 40px;
+  margin: 20px auto;
+  background-color: #f8f9fa;
+  opacity: 0.92;
+  text-align: center;
+}
+
+.landingPage--title {
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.landingPage--subtitle {
+  margin-bottom: 40px;
+}
+
+.landingPage--buttons {
+  width: 50%;
+  margin: 0 auto;
+}
+
+
+/* Recipes Page */
+
+#recipes {
+  min-height: 100vh;
+}
+
+.container {
+  margin-top: 60px;
+  border: 1px solid red;
 }
