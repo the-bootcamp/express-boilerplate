@@ -1,15 +1,64 @@
 const express = require('express');
 const router = express.Router();
+const bcryptjs = require('bcryptjs');
+const saltRounds = 10;
+const mongoose = require('mongoose');
+const User = require('../models/User.model');
 
-/* GET landing page */
+/* GET home page */
 router.get('/', (req, res, next) => res.render('index'));
 
 /* GET signup page */
-router.get('/signup', (req, res, next) => res.render('signup'));
+router.get('/signup', (req, res, next) => res.render('auth/signup'));
+
+router.post('/signup', (req, res, next) => {
+  const { username, email, password } = req.body;
+
+  if (!username || !email || !password) {
+    res.render('auth/signup', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
+    return
+  }
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res
+      .status(500)
+      .render('auth/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+    return;
+  }
+
+  bcryptjs
+    .genSalt(saltRounds)
+    .then(salt => bcryptjs.hash(password, salt))
+    .then(hashedPassword => {
+      return User.create({
+        username,
+        email,
+        passwordHash: hashedPassword
+      });
+    })
+    .then(userFromDB => {
+      console.log('Newly created user is: ', userFromDB);
+      res.redirect('/userProfile');
+    })
+    .catch(error => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        res.status(500).render('auth/signup', { errorMessage: error.message });
+      } else if (error.code === 11000) {
+        res.status(500).render('auth/signup', {
+          errorMessage: 'Username and email need to be unique. Either username or email is already used.'
+        });
+      } else {
+        next(error);
+      }
+    });
+});
 
 
 
+/* GET login page */
+router.get('/login', (req, res, next) => res.render('auth/login'));
 
+router.get('/userProfile', (req, res, next) => res.render('user/userProfile'));
 
 
 module.exports = router;

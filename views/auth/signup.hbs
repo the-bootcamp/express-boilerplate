@@ -2,25 +2,25 @@
   <div class="card" style="width: 18rem;">
     <div class="card-title">Sign up!</div>
     <div>
-      <form>
+      <form action="/signup" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">Username</label>
-          <input type="username" class="form-control" id="username" aria-describedby="emailHelp">
+          <input type="username" class="form-control" id="signup-username" name="username" aria-describedby="emailHelp">
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="email1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="signup-email" name="email" aria-describedby="emailHelp">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="password1">
+          <input type="password" class="form-control" name="password" id="signup-password">
         </div>
         <button type="submit" class="btn btn-warning">Submit</button>
       </form>
     </div>
     <div>
       <span class="logo-link-container">
-        Already a user? Log <a class="login-link" href="">here</a>
+        Already a user? Log <a class="login-link" href="/login">here</a>
       </span>
     </div>
   </div>

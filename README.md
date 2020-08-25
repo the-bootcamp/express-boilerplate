@@ -88,7 +88,7 @@ Get and create food recipes
  - User 
 
  const userSchema = new Schema({
-  nickname: {
+  username: {
     type: String,
     trim: true,
     required: [true, 'Username is required.'],
