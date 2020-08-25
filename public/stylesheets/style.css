@@ -38,6 +38,36 @@ img {
   margin-right: 8px;
 }
 
+/* Signup */
+.login-link {
+  color: black;
+  text-decoration: underline;
+}
+
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.signup-container > .card {
+  border: none;
+}
+
+.signup-container > .card > .card-title {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.logo-link-container {
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+}
 /* Landing Page */
 
 #landingPage {
