@@ -45,23 +45,44 @@ img {
   padding-left: 5px;
 }
 
-.signup-container {
+#signup-container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 90vh;
+  height: 100vh;
+  background-image: url('../images/foodle-landing-page.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.signup-container > .card {
+
+#signup-container > .card {
   border: none;
+  min-width: 400px;
+  max-width: 800px;
+  padding: 40px;
+  margin: 20px auto;
+  background-color: #f8f9fa;
+  opacity: 0.92;
 }
 
-.signup-container > .card > .card-title {
+#signup-container > .card > .card-title {
   display: flex;
   justify-content: center;
   padding: 20px;
   font-weight: 600;
   font-size: 24px;
+}
+
+.signup--btn {
+  display: flex;
+  margin: auto;
 }
 
 .logo-link-container {
