@@ -36,76 +36,64 @@ Log-in button redirects to /login.hbs
 Sign-up button redirects to /auth/signup.hbs
 
 
-GET /login
+//1 GET /login
 renders login.hbs
 
-POST /login
+//1 POST /login
 creates new user session
 redirects to /profile-jobowner if details relate to job owner
 redirects to /profile-skillprovider if details relate to skill provider
 
-GET /auth/signup 
+//2 ***LYNN*** GET /auth/signup 
 renders signup.hbs 
 redirects to /signup
 
-POST /signup
+//2 ***LYNN*** POST /signup
 creates new User Model
 creates new user session
 creates new Job Model if new user is job owner
-renders /profile-jobowner if new User is job owner
 creates new Skill Model if new user is skill provider
-renders /profile-skillprovider if new User is skill provider
+renders /profile-user 
 
-GET /rules
+//2 ***LYNN*** GET /rules
 renders rules.hbs in new tab/window
 back button closes tab/window
 
-GET /jobowner/edit
-renders /profile-jobowner/edit.hbs
+//3 GET /user/edit
+renders /profile-user/edit.hbs
 
-POST /jobowner/edit
+//3 POST /user/edit
 edits User Model
-renders /profile-jobowner with edited details
+renders /profile-user with edited details
 
-POST /jobowner/delete
+//3 POST /user/delete
 deletes User model
 renders /index/delete.hbs
 
-GET /skillprovider/edit
-renders /profile-skillprovider/edit.hbs
-
-POST /skillprovider/edit
-edits User Model
-renders /profile-skillprovider with edited details
-
-POST /skillprovider/delete
-deletes User model
-renders /index/delete.hbs
-
-GET /jobslist
+//4 GET /jobslist
 renders job-list.hbs showing list of jobs from database
 
-GET /jobdetails/:id
+//4 GET /jobdetails/:id
 renders job-details.hbs with details of job selected by id
 
-POST /jobdetails/:id
+//4 POST /jobdetails/:id
 edits Job Model to show job has been assigned to skill provider
-edits skill provider user model to include link to job
-renders profile-skillprovider displaying new job under current jobs list
+edits user model to include link to job
+renders profile-user displaying new job under current jobs list
 
-GET /logout
+//1 GET /logout
 ends user session
 redirects to /index/log-out.hbs
 
-GET /newjob
+//4 GET /newjob
 renders /create-job.hbs
 
-POST /newjob
+//4 POST /newjob
 creates new Job model with entered details
 edits User model of job owner with link to new Job model
-renders /profile-jobowner displaying details of new job under current jobs
+renders /profile-user displaying details of new job under current jobs
 
-GET /error
+//5 GET /error
 renders /error.hbs
 
 
