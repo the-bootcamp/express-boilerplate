@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require('../models/User.model');
 const mongoose = require('mongoose');
+
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended:true}));
 
 router.get('/auth/signup', (req, res, next) => res.render('signup'));
 
@@ -18,7 +22,8 @@ router.post('/signup', (req, res, next) => {
     } 
 
     User.findOne({ email })
-    .then(user => {
+    console.log('searching for user with same email')
+    .then((user) => {
       if(user){
         res.render('signup', {errorMessage: 'Email must be unique'});
       }
@@ -34,6 +39,7 @@ router.post('/signup', (req, res, next) => {
       .genSalt(saltRounds)
       .then(salt => bcrypt.hash(passwordHash, salt))
       .then(hashedPassword => {
+        console.log(hashedPassword)
         return User.create({
           name,
           email,

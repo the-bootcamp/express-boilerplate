@@ -1,128 +1,129 @@
 <section id="header-image">
-<img src='/images/UNUM_copy.png'>
-<hr>
+  <img src='/images/UNUM_copy.png'>
+  <hr>
 </section>
-<form action="/signup" method="POST">
+<form action="/signup" method="POST" class="form-signup">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" name="name" id="name-input" placeholder="Joe Bloggs">
   </div>
   <div class="form-group">
     <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email-input" placeholder="name@example.com">
+    <input type="email" class="form-control" name="email" id="email-input" placeholder="name@example.com">
   </div>
   <div class="form-group">
     <label for="phone-number">Telephone</label>
-    <input type="number" class="form-control" id="phone-input" placeholder="061234567">
+    <input type="number" class="form-control" name="telephone" id="phone-input" placeholder="061234567">
   </div>
   <div class="form-group">
     <label for="address">Address</label>
-    <input type="mixed" class="form-control" id="address-input" placeholder="Hacker Street, 12345 Hackersville">
+    <input type="mixed" class="form-control" name="address" id="address-input"
+      placeholder="Hacker Street, 12345 Hackersville">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password-input" placeholder="**********">
+    <input type="password" class="form-control" name="passwordHash" id="password-input" placeholder="**********">
   </div>
   <hr>
   <section id="skill-provider-signup">
-  <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="skillCheckBox">
-  <label class="form-check-label" for="skillCheckBox">
-    I have lost my job through the Covid-19 Pandemic and I have a skill to offer
-  </label>
-  <p></p>
-</div>
-<p>Please select up to 3 skills</p>
-  <div class="form-group">
-    <select class="form-control" id="skillSelectBox">
-      <option>Skill 1</option>
-      <option>Painting and decorating</option>
-      <option>Babysitting</option>
-      <option>Cooking</option>
-      <option>Web development</option>
-      <option>Cleaning</option>
-      <option>Woodwork and general repairs</option>
-      <option>Gardening</option>
-      <option>Ironing</option>
-      <option>Homework help and tutoring</option>
-      <option>Hairdressing</option>
-      <option>Car washing (inside and out)</option>
-      <option>n/a</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <select class="form-control" id="skillSelectBox">
-      <option>Skill 2</option>
-      <option>Painting and decorating</option>
-      <option>Babysitting</option>
-      <option>Cooking</option>
-      <option>Web development</option>
-      <option>Cleaning</option>
-      <option>Woodwork and general repairs</option>
-      <option>Gardening</option>
-      <option>Ironing</option>
-      <option>Homework help and tutoring</option>
-      <option>Hairdressing</option>
-      <option>Car washing (inside and out)</option>
-      <option>n/a</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <select class="form-control" id="skillSelectBox">
-      <option>Skill 3</option>
-      <option>Painting and decorating</option>
-      <option>Babysitting</option>
-      <option>Cooking</option>
-      <option>Web development</option>
-      <option>Cleaning</option>
-      <option>Woodwork and general repairs</option>
-      <option>Gardening</option>
-      <option>Ironing</option>
-      <option>Homework help and tutoring</option>
-      <option>Hairdressing</option>
-      <option>Car washing (inside and out)</option>
-      <option>n/a</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="additionalInfoSkills">Additional Information</label>
-    <textarea class="form-control" id="additionalInfoSkills" rows="5"></textarea>
-  </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="skillCheckBox">
+      <label class="form-check-label" for="skillCheckBox">
+        I have lost my job through the Covid-19 Pandemic and I have a skill to offer
+      </label>
+      <p></p>
+    </div>
+    <p>Please select up to 3 skills</p>
+    <div class="form-group">
+      <select class="form-control" id="skillSelectBox">
+        <option>Skill 1</option>
+        <option>Painting and decorating</option>
+        <option>Babysitting</option>
+        <option>Cooking</option>
+        <option>Web development</option>
+        <option>Cleaning</option>
+        <option>Woodwork and general repairs</option>
+        <option>Gardening</option>
+        <option>Ironing</option>
+        <option>Homework help and tutoring</option>
+        <option>Hairdressing</option>
+        <option>Car washing (inside and out)</option>
+        <option>n/a</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="form-control" id="skillSelectBox">
+        <option>Skill 2</option>
+        <option>Painting and decorating</option>
+        <option>Babysitting</option>
+        <option>Cooking</option>
+        <option>Web development</option>
+        <option>Cleaning</option>
+        <option>Woodwork and general repairs</option>
+        <option>Gardening</option>
+        <option>Ironing</option>
+        <option>Homework help and tutoring</option>
+        <option>Hairdressing</option>
+        <option>Car washing (inside and out)</option>
+        <option>n/a</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="form-control" id="skillSelectBox">
+        <option>Skill 3</option>
+        <option>Painting and decorating</option>
+        <option>Babysitting</option>
+        <option>Cooking</option>
+        <option>Web development</option>
+        <option>Cleaning</option>
+        <option>Woodwork and general repairs</option>
+        <option>Gardening</option>
+        <option>Ironing</option>
+        <option>Homework help and tutoring</option>
+        <option>Hairdressing</option>
+        <option>Car washing (inside and out)</option>
+        <option>n/a</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="additionalInfoSkills">Additional Information</label>
+      <textarea class="form-control" id="additionalInfoSkills" rows="5"></textarea>
+    </div>
   </section>
   <section id="job-owner-signup">
-  <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="jobCheckBox">
-  <label class="form-check-label" for="jobCheckBox">
-    I have a job to be done
-  </label>
-  <p></p>
-</div>
-  <div class="form-group">
-    <label for="jobSelect">Please select a description</label>
-    <select class="form-control" id="skillSelectBox">
-      <option>Job description</option>
-      <option>Painting and decorating</option>
-      <option>Babysitting</option>
-      <option>Cooking</option>
-      <option>Web development</option>
-      <option>Cleaning</option>
-      <option>Woodwork and general repairs</option>
-      <option>Gardening</option>
-      <option>Ironing</option>
-      <option>Homework help and tutoring</option>
-      <option>Hairdressing</option>
-      <option>Car washing (inside and out)</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="additionalInfoJob">Additional Information</label>
-    <textarea class="form-control" id="additionalInfoJob" rows="8"></textarea>
-  </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="jobCheckBox">
+      <label class="form-check-label" for="jobCheckBox">
+        I have a job to be done
+      </label>
+      <p></p>
+    </div>
+    <div class="form-group">
+      <label for="jobSelect">Please select a description</label>
+      <select class="form-control" id="skillSelectBox">
+        <option>Job description</option>
+        <option>Painting and decorating</option>
+        <option>Babysitting</option>
+        <option>Cooking</option>
+        <option>Web development</option>
+        <option>Cleaning</option>
+        <option>Woodwork and general repairs</option>
+        <option>Gardening</option>
+        <option>Ironing</option>
+        <option>Homework help and tutoring</option>
+        <option>Hairdressing</option>
+        <option>Car washing (inside and out)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="additionalInfoJob">Additional Information</label>
+      <textarea class="form-control" id="additionalInfoJob" rows="8"></textarea>
+    </div>
   </section>
   <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="t&cCheckBox">
-  <label class="form-check-label" for="t&cCheckBox">
-    I confirm that I have read and understood the terms and conditions.
-  </label>
-  <button type="submit" class="btn btn-secondary">Submit</button>
+    <input class="form-check-input" type="checkbox" value="" id="t&cCheckBox">
+    <label class="form-check-label" for="t&cCheckBox">
+      I confirm that I have read and understood the terms and conditions.
+    </label>
+    <button type="submit" class="btn btn-secondary">Submit</button>
 </form>
