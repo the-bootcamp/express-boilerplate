@@ -88,4 +88,8 @@ router.post('/login', (req, res, next) => {
 
 router.get('/userProfile', (req, res, next) => res.render('user/userProfile'));
 
+/* GET new recipe page */
+
+router.get('/create', (req, res, next) => res.render('recipes/addNewRecipe'));
+
 module.exports = router;

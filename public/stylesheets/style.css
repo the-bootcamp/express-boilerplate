@@ -12,6 +12,16 @@ a {
   color: #00b7ff;
 }
 
+.btn-warning {
+  color: #f8f9fa;
+}
+
+.btn-warning:hover {
+  color: #e0a800;
+  background-color: #f8f9fa;
+  border-color: #d39e00;
+}
+
 img {
   width: 100%;
   height: auto;
@@ -66,7 +76,7 @@ section {
 }
 
 
-#signup-container > .card {
+.auth--card {
   border: none;
   min-width: 400px;
   max-width: 800px;
@@ -76,17 +86,19 @@ section {
   opacity: 0.92;
 }
 
-#signup-container > .card > .card-title {
+.auth--card-title {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   font-weight: 600;
   font-size: 24px;
+  color: #ffc107;
 }
 
-.signup--btn {
+.auth--btn {
   display: flex;
   margin: auto;
+  color: #fff;
 }
 
 .logo-link-container {
