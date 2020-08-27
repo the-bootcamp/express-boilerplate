@@ -1,18 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const jobSchema = new Schema(
   {
-    selectDescription: {Mixed},
-    image: {String},
-    additionalInformation: {String, required: true},
-    jobowner: {ObjectID, required: true},
-    jobstatus: {String, required: true},
-    allocation: {ObjectID}
+    selectDescription: { type: String },
+    image: { type: String },
+    additionalInformation: { type: String, required: true },
+    jobowner: { type: Schema.Types.ObjectId, required: true },
+    jobstatus: { type: String, required: true },
+    allocation: { type: Schema.Types.ObjectId },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
-module.exports = model('Job', jobSchema);
+module.exports = model("Job", jobSchema);

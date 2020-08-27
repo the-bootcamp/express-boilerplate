@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const User = require("../models/User.model");
+const Skill = require("../models/Job.model");
+const Job = require("../models/Job.model");
 const mongoose = require("mongoose");
 
 router.use(bodyParser.json());
@@ -31,12 +33,11 @@ router.post("/signup", (req, res, next) => {
   } = req.body;
   console.log(req.body);
 
-  if (email == "" || passwordHash == "") {
+  if (email == '' || passwordHash =='') {
     res.render("signup", {
       errorMessage:
-        "Email and password fields are mandatory. Please provide your email and password.",
+        "Email and password are both compulsory fields. Please enter your email address and a password."
     });
-    return;
   } else {
     console.log("email and password entered correctly");
   }
@@ -44,9 +45,8 @@ router.post("/signup", (req, res, next) => {
   if (signupagreement !== "true") {
     res.render("signup", {
       errorMessage:
-        "Agreement to the terms and conditions is mandatory. Please read our terms and conditions and confirm your agreement by checking the box.",
+      "Agreement to the terms and conditions is mandatory. Please read our terms and conditions and confirm your agreement by checking the box."
     });
-    return;
   } else {
     console.log("terms and conditions agreed");
   }
@@ -55,9 +55,10 @@ router.post("/signup", (req, res, next) => {
     .then((user) => {
       console.log("searching for user with same email");
       if (user) {
-        res.render("signup", { errorMessage: "Email must be unique" });
-      }
-    })
+        res.render("signup",{ errorMessage: "Only one user per email address is permitted. Please enter a unique email address."})
+        };
+        return
+      })
     .catch((error) =>
       res.render("signup", { errorMessage: "Email must be unique" })
     );
@@ -68,7 +69,7 @@ router.post("/signup", (req, res, next) => {
       .status(500)
       .render("signup", {
         errorMessage:
-          "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+          "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter."
       });
     return;
   } else {
@@ -93,8 +94,23 @@ router.post("/signup", (req, res, next) => {
       }).then((newUser) => {
         console.log("Newly created user is: ", newUser);
         res.render("profile-user", newUser);
-      });
-    })
+      })
+      .then((newUser) => {
+        if(skillprovider=="true"){
+        Skill.create({
+          selectDescription: skill1,
+          skillprovider: newUser._id
+        }).then((newSkill) => {
+          console.log("Newly created skill is: ", newSkill);
+        })} else if(jobowner=="true"){
+        Job.create({
+          selectDescription: jobDescription,
+          additionalInformation: additionalInfoJob,
+          jobowner: newUser._id,
+          jobstatus: "current"
+        })}
+      })
+        })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("signup", { errorMessage: error.message });
@@ -106,6 +122,6 @@ router.post("/signup", (req, res, next) => {
         next(error);
       }
     });
-});
+})
 
 module.exports = router;

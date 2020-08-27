@@ -3,9 +3,8 @@ const { Schema, model } = mongoose;
 
 const skillSchema = new Schema(
   {
-    selectDescription: {Mixed, required: true},
-    additionalInformation: {String}, 
-    skillprovider: {[ObjectID], required:true}
+    selectDescription: {type: String, required: true},
+    skillprovider: {type:[Schema.Types.ObjectId], required:true}
   },
   {
     timestamps: true
