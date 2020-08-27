@@ -1,4 +1,8 @@
 const express = require('express');
+
+// require the Recipe model here
+const Recipe = require('../models/Recipe.model');
+
 const router = express.Router();
 
 /* GET recipes page */

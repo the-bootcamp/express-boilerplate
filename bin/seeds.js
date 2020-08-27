@@ -3,7 +3,6 @@ const Recipe = require('../models/Recipe.model');
 
 // require database configuration
 require('../configs/db.config');
-
 require('dotenv').config();
 
 // List of recipes
