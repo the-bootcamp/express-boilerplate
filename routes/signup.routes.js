@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const User = require("../models/User.model");
-const Skill = require("../models/Job.model");
+const Skill = require("../models/Skill.model");
 const Job = require("../models/Job.model");
 const mongoose = require("mongoose");
 
@@ -33,10 +33,10 @@ router.post("/signup", (req, res, next) => {
   } = req.body;
   console.log(req.body);
 
-  if (email == '' || passwordHash =='') {
+  if (email == "" || passwordHash == "") {
     res.render("signup", {
       errorMessage:
-        "Email and password are both compulsory fields. Please enter your email address and a password."
+        "Email and password are both compulsory fields. Please enter your email address and a password.",
     });
     return;
   } else {
@@ -46,7 +46,7 @@ router.post("/signup", (req, res, next) => {
   if (signupagreement !== "true") {
     res.render("signup", {
       errorMessage:
-      "Agreement to the terms and conditions is mandatory. Please read our terms and conditions and confirm your agreement by checking the box."
+        "Agreement to the terms and conditions is mandatory. Please read our terms and conditions and confirm your agreement by checking the box.",
     });
     return;
   } else {
@@ -57,24 +57,25 @@ router.post("/signup", (req, res, next) => {
     .then((user) => {
       console.log("searching for user with same email");
       if (user) {
-        res.render("signup",{ errorMessage: "Only one user per email address is permitted. Please enter a unique email address."})
-        } else {
-          console.log("email is unique")
-        }
-        return
-      })
+        res.render("signup", {
+          errorMessage:
+            "Only one user per email address is permitted. Please enter a unique email address.",
+        });
+      } else {
+        console.log("email is unique");
+      }
+      return;
+    })
     .catch((error) =>
       res.render("signup", { errorMessage: "Email must be unique" })
     );
 
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(passwordHash)) {
-    res
-      .status(500)
-      .render("signup", {
-        errorMessage:
-          "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter."
-      });
+    res.status(500).render("signup", {
+      errorMessage:
+        "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+    });
     return;
   } else {
     console.log("password meets restrictions");
@@ -96,26 +97,38 @@ router.post("/signup", (req, res, next) => {
         jobowner,
         signupagreement,
       }).then((newUser) => {
-        console.log("Newly created user is: ", newUser, jobDescription, additionalInfoJob);
-        Skill.findByIdAndUpdate({_id:skillId}{
-          $addToSet: { skillprovider: newUser._id }
-        }).then((newSkill) => {
-          console.log("Newly created skill is: ", newSkill);
-        })
-        Job.create({
-          selectDescription: jobDescription,
-          additionalInformation: additionalInfoJob,
-          jobowner: newUser._id,
-          jobstatus: "current"
-        })
-      
-      .then(createdJob =>res.render('profileuser') )
-      .catch(err => {
-        console.log("JOB ERROR", err);
-        next(err)
-      })
+        console.log(
+          "Newly created user is: ",
+          newUser,
+          jobDescription,
+          additionalInfoJob
+        );
+        if (skillprovider) {
+          const skillsarray = [skill1, skill2, skill3].map((skill) =>
+            Skill.findOne({ selectDescription: skill }).then((foundSkill) =>
+              console.log(foundSkill) || Skill.findByIdAndUpdate(foundSkill._id, {
+                $addToSet: { skillprovider: newUser._id },
+              })
+            )
+          );
+          Promise.all(skillsarray).then(() => {
+            res.render('profileuser')
+          });
+        } else {
+          Job.create({
+            selectDescription: jobDescription,
+            additionalInformation: additionalInfoJob,
+            jobowner: newUser._id,
+            jobstatus: "current",
+          })
+            .then((createdJob) => res.render("profileuser"))
+            .catch((err) => {
+              console.log("JOB ERROR", err);
+              next(err);
+            });
+        }
+      });
     })
-  })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("signup", { errorMessage: error.message });
@@ -127,6 +140,6 @@ router.post("/signup", (req, res, next) => {
         next(error);
       }
     });
-})
+});
 
 module.exports = router;
