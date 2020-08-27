@@ -4,7 +4,6 @@ const express = require('express');
 const Recipe = require('../models/Recipe.model');
 
 const router = express.Router();
-const Recipe = require('../models/Recipe.model');
 
 /* GET recipes page */
 router.get('/recipes', (req, res) => {
