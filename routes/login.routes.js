@@ -24,8 +24,8 @@ router.post('/login', (req, res, next) => {
   }
 
   User.findOne({ email })
-  console.log('searching for email registation')
     .then(user => {
+      console.log('searching for email registation')
       if (!user) {
         res.render('login', { errorMessage: 'Email is not registered. Try with other email.' });
         return;

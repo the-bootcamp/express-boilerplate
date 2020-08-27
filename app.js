@@ -41,7 +41,7 @@ app.locals.title = 'Express boilerplate made with love by your instructional tea
 app.use('/', require('./routes/index.routes'));
 app.use('/', require('./routes/signup.routes'));
 app.use('/', require('./routes/login.routes'));
-//app.use('/', require('./routes/user.routes'));
+app.use('/', require('./routes/user.routes'));
 //app.use('/', require('./routes/job.routes'));
 
 // Requiring Session

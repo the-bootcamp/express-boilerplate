@@ -2,6 +2,9 @@
   <img src='/images/headers/header_signup1.png'>
   <hr>
 </section>
+{{#if errorMessage}}
+      <p class="alert alert-primary" role="alert">{{errorMessage}}</p>
+    {{/if}}
 <form action="/signup" method="POST" class="form-signup">
   <div class="form-group">
     <label for="name">Name</label>

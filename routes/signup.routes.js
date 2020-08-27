@@ -38,6 +38,7 @@ router.post("/signup", (req, res, next) => {
       errorMessage:
         "Email and password are both compulsory fields. Please enter your email address and a password."
     });
+    return;
   } else {
     console.log("email and password entered correctly");
   }
@@ -47,6 +48,7 @@ router.post("/signup", (req, res, next) => {
       errorMessage:
       "Agreement to the terms and conditions is mandatory. Please read our terms and conditions and confirm your agreement by checking the box."
     });
+    return;
   } else {
     console.log("terms and conditions agreed");
   }
@@ -56,7 +58,9 @@ router.post("/signup", (req, res, next) => {
       console.log("searching for user with same email");
       if (user) {
         res.render("signup",{ errorMessage: "Only one user per email address is permitted. Please enter a unique email address."})
-        };
+        } else {
+          console.log("email is unique")
+        }
         return
       })
     .catch((error) =>
@@ -92,25 +96,26 @@ router.post("/signup", (req, res, next) => {
         jobowner,
         signupagreement,
       }).then((newUser) => {
-        console.log("Newly created user is: ", newUser);
-        res.render("profile-user", newUser);
-      })
-      .then((newUser) => {
-        if(skillprovider=="true"){
-        Skill.create({
-          selectDescription: skill1,
-          skillprovider: newUser._id
+        console.log("Newly created user is: ", newUser, jobDescription, additionalInfoJob);
+        Skill.findByIdAndUpdate({_id:skillId}{
+          $addToSet: { skillprovider: newUser._id }
         }).then((newSkill) => {
           console.log("Newly created skill is: ", newSkill);
-        })} else if(jobowner=="true"){
+        })
         Job.create({
           selectDescription: jobDescription,
           additionalInformation: additionalInfoJob,
           jobowner: newUser._id,
           jobstatus: "current"
-        })}
-      })
         })
+      
+      .then(createdJob =>res.render('profileuser') )
+      .catch(err => {
+        console.log("JOB ERROR", err);
+        next(err)
+      })
+    })
+  })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("signup", { errorMessage: error.message });
