@@ -27,7 +27,7 @@
   <hr>
   <section id="skill-provider-signup">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="skillCheckBox">
+      <input class="form-check-input" type="checkbox" name="skillprovider" value="true" id="skillCheckBox">
       <label class="form-check-label" for="skillCheckBox">
         I have lost my job through the Covid-19 Pandemic and I have a skill to offer
       </label>
@@ -35,7 +35,7 @@
     </div>
     <p>Please select up to 3 skills</p>
     <div class="form-group">
-      <select class="form-control" id="skillSelectBox">
+      <select class="form-control" type="text" name="skill1" id="skillSelectBox">
         <option>Skill 1</option>
         <option>Painting and decorating</option>
         <option>Babysitting</option>
@@ -52,7 +52,7 @@
       </select>
     </div>
     <div class="form-group">
-      <select class="form-control" id="skillSelectBox">
+      <select class="form-control" type="text" name="skill2" id="skillSelectBox">
         <option>Skill 2</option>
         <option>Painting and decorating</option>
         <option>Babysitting</option>
@@ -69,7 +69,7 @@
       </select>
     </div>
     <div class="form-group">
-      <select class="form-control" id="skillSelectBox">
+      <select class="form-control" type="text" name="skill3" id="skillSelectBox">
         <option>Skill 3</option>
         <option>Painting and decorating</option>
         <option>Babysitting</option>
@@ -87,12 +87,12 @@
     </div>
     <div class="form-group">
       <label for="additionalInfoSkills">Additional Information</label>
-      <textarea class="form-control" id="additionalInfoSkills" rows="5"></textarea>
+      <textarea class="form-control" type="text" name="additionalinformation" id="additionalInfoSkills" rows="5"></textarea>
     </div>
   </section>
   <section id="job-owner-signup">
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="jobCheckBox">
+      <input class="form-check-input" type="checkbox" name="jobowner" value="true" id="jobCheckBox">
       <label class="form-check-label" for="jobCheckBox">
         I have a job to be done
       </label>
@@ -100,7 +100,7 @@
     </div>
     <div class="form-group">
       <label for="jobSelect">Please select a description</label>
-      <select class="form-control" id="skillSelectBox">
+      <select class="form-control" type="text" name="jobDescription" id="skillSelectBox">
         <option>Job description</option>
         <option>Painting and decorating</option>
         <option>Babysitting</option>
@@ -117,12 +117,12 @@
     </div>
     <div class="form-group">
       <label for="additionalInfoJob">Additional Information</label>
-      <textarea class="form-control" id="additionalInfoJob" rows="8"></textarea>
+      <textarea class="form-control" type="text" name="additionalInfoJob" id="additionalInfoJob" rows="8"></textarea>
     </div>
   </section>
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="t&cCheckBox">
-    <label class="form-check-label" for="t&cCheckBox">
+    <input class="form-check-input" type="checkbox" name="signupagreement" value="true" id="tandcCheckBox">
+    <label class="form-check-label" for="tandcCheckBox">
       I confirm that I have read and understood the terms and conditions.
     </label>
     <button type="submit" class="btn btn-secondary">Submit</button>

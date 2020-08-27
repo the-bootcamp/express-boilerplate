@@ -23,16 +23,28 @@ const userSchema = new Schema({
   address: {
     type:String, 
     required:true, 
-    maxlength: 30
+    maxlength: 80
   },
   passwordHash: {
     type:String,
     required: [true, 'Password is required'], 
-    minlength: 6,
-    maxlength: 6
+    minlength: 6
+  },
+  skillprovider: {
+    type:String
+  },
+  additionalinformation: {
+    type:String
+  },
+  jobowner: {
+    type:String
   },
   skills: [Schema.Types.ObjectId],
-  jobs: [Schema.Types.ObjectId] 
+  jobs: [Schema.Types.ObjectId],
+  signupagreement: {
+    type:String,
+    required:true
+  } 
 },
   {
     timestamps: true
