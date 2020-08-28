@@ -30,7 +30,7 @@ In creating  UNUM, we want to help those who have lost their jobs because of the
 
 ## ... ROUTES
 
-GET / 
+GET / - DONE
 renders index.hbs
 Log-in button redirects to /login.hbs 
 Sign-up button redirects to /auth/signup.hbs
@@ -55,7 +55,7 @@ creates new Job Model if new user is job owner
 creates new Skill Model if new user is skill provider
 renders /profile-user 
 
-//2 ***LYNN*** GET /rules
+//2 GET /rules - DONE
 renders rules.hbs in new tab/window
 back button closes tab/window
 

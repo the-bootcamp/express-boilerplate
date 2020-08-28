@@ -1,7 +1,11 @@
+{{#if errorMessage}}
+      <p class="alert alert-primary" role="alert">{{errorMessage}}</p>
+    {{/if}}
+
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container">
    <ul class="nav nav-pills nav-justified">
-  <li role="presentation"><a href="#">Jobs</a></li>
+  <li role="presentation"><a href="/jobslist">Jobs</a></li>
   <li role="presentation"><a href="#">Create Job</a></li>
   <li role="presentation"><a href="#">Edit profile</a></li>
   <li role="presentation"><a href="#">Log out</a></li>
