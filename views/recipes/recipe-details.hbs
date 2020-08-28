@@ -1,0 +1,30 @@
+  {{>navbar}}
+<section id="recipe-details">
+  <div class="recipe-details--card">
+    <h1 class="recipe-details--card-title">{{title}}</h1>
+    <div class="recipe-details--info">
+      <h2 class="recipe-details--fs">Level: {{level}}</h2>
+      <h2 class="recipe-details--fs">Type: {{dishType}}</h2>
+      <h2 class="recipe-details--fs">Ingredients:</h2>
+      <ul class="recipe-details--fs">
+        {{#each ingredients}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      <h2 class="recipe-details--fs">Preparation: {{duration}} minutes</h2>
+
+      <h2 class="recipe-details--fs">isVegetarian: {{isVegetarian}}</h2>
+    </div>
+      <h2 class="recipe-details--fs">Description</h2>
+      <p class="recipe-details--fs">{{description}}</p>
+
+      </div>
+</section>
+
+<script>
+    const section = document.getElementById('recipe-details');
+    const image = '{{image}}'
+    console.log('this', image)
+    section.style.backgroundImage = `url(${image})`;
+</script>
+  

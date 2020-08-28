@@ -1,9 +1,9 @@
 <section id="add-new-recipe">
   {{>navbar}}
-  <div class="new-recipe--card" style="width: 18rem;">
+  <div class="new-recipe--card">
     <div class="new-recipe--card-title">Add a new recipe!</div>
       <div>
-        <form action="/addNewRecipe" method="POST">
+        <form action="/add-new-recipe" method="POST">
           <div class="form-group">
             <label>Title</label>
             <input type="text" class="form-control" id="title" name="title">
@@ -40,8 +40,8 @@
             <textarea id="ingredients" name="ingredients" rows="2" cols="35"></textarea>
           </div>
           <div class="form-group">
-            <label>Time to prepare</label>
-            <input type="number" class="form-control" id="duration" name="duration">
+            <label>Time to prepare:</label>
+            <input class="new-recipe--time" type="number" class="form-control" id="duration" name="duration"> minutes
           </div>
           <div class="form-group d-flex">
             <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian" name="isVegetarian" value="false">
@@ -77,5 +77,3 @@
     }
   })
 </script>
-
-    <span class="badge badge-pill badge-primary">Primary</span>
