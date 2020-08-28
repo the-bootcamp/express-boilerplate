@@ -123,13 +123,21 @@ router.post("/signup", (req, res, next) => {
             jobowner: newUser._id,
             jobstatus: "current",
           })
-            .then((createdJob) => res.render("profileuser"))
+            .then((createdJob) => {
+              Job.findOne({selectDescription: jobDescription, additionalInformation: "Example for icon"}).then((foundJob) => {
+                Job.findOneAndUpdate(createdJob._id, {image:foundJob,image})
+                res.render("profileuser")
+                 })
+               .catch((error) => {
+                 console.log("ICON ERROR", err);
+                 next(err);
+                })
             .catch((err) => {
               console.log("JOB ERROR", err);
               next(err);
             });
+        })
         }
-      });
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -142,6 +150,6 @@ router.post("/signup", (req, res, next) => {
         next(error);
       }
     });
-});
+})
 
-module.exports = router;
+module.exports = router

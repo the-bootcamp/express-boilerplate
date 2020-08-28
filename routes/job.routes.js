@@ -11,7 +11,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/jobslist", (req, res, next) => {
-    Job.find()
+    Job.find({ jobstatus: 'current'})
     .then((jobsFromDB) => res.render("jobslist", {jobsFromDB}))
     .catch((error) => res.render("profileuser", { errorMessage: "Problem retrieving jobs from database" }))
 })
