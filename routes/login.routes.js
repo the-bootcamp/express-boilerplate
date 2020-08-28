@@ -14,13 +14,18 @@ router.get('/auth/login', (req, res, next) => res.render('login'));
 
 router.post('/login', (req, res, next) => {
   console.log('SESSION =====> ', req.session);
-  const { email, password } = req.body;
+  const { 
+    email, 
+    passwordHash 
+  } = req.body;
   console.log(req.body)
 
-  if (email === '' || password === '') {
+  if (email == "" || passwordHash == "") {
     res.render('login', {
       errorMessage: 'All fields are mandatory. Please provide your email and password.'});
     return;
+  } else {
+    console.log("email and password entered correctly");
   }
 
   User.findOne({ email })
@@ -29,11 +34,12 @@ router.post('/login', (req, res, next) => {
       if (!user) {
         res.render('login', { errorMessage: 'Email is not registered. Try with other email.' });
         return;
-      } else if (bcryptjs.compareSync(password, user.passwordHash)) {
+      } else if (bcrypt.compareSync(passwordHash, user.passwordHash)) {
        
 //*** Save user ***//
-       req.session.currentUser = user;
+  //     req.session.currentUser = user;
         res.redirect('profile-user');
+        res.render("profileuser");
       }else {
         res.render('auth/login', {errorMessage: 'Incorrect password'});
       }
@@ -43,12 +49,12 @@ router.post('/login', (req, res, next) => {
 
 //LOGOUT//
 router.post("/logout", (req,res) => {
-  req.session.destroy();
+//  req.session.destroy();
   res.redirect("/")
 })
 
 router.get("profile-user", (req, res, next) => {
-  res.render("profile-user", {userInSession: req.session.currentUser})
+  res.render("profileuser", {userInSession: req.session.currentUser})
 })
 
 module.exports = router;
