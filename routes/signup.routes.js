@@ -98,47 +98,76 @@ router.post("/signup", (req, res, next) => {
         additionalinformation,
         jobowner,
         signupagreement,
-      }).then((newUser) => {
-        console.log(
-          "Newly created user is: ",
-          newUser,
-          jobDescription,
-          additionalInfoJob
-        );
+        jobDescription,
+        additionalInfoJob
+      })
+      .then((newUser) => {
+        console.log("Newly created user is: ",newUser);
         if (skillprovider) {
+          User.findByIdAndUpdate(newUser._id, {$addToSet: {skills: [skill1, skill2, skill3]},}).then(() =>{
           const skillsarray = [skill1, skill2, skill3].map((skill) =>
             Skill.findOne({ selectDescription: skill }).then((foundSkill) =>
               console.log(foundSkill) || Skill.findByIdAndUpdate(foundSkill._id, {
                 $addToSet: { skillprovider: newUser._id },
               })
-            )
-          );
+            ))}
+          )
           Promise.all(skillsarray).then(() => {
             res.render('profileuser')
           });
         } else {
+          User.findByIdAndUpdate(newUser._id, {$addToSet: {jobs: jobDescription},}).then(() =>{
+          switch(jobDescription){
+            case 'Painting and decorating':
+              icon = './public/images/icons/paintinganddecorating.png';
+              break;
+            case 'Babysitting':
+              icon = './public/images/icons/babysitting.png';
+              break;
+            case 'Cooking':
+              icon = './public/images/icons/cooking.png';
+              break;
+            case 'Web development':
+              icon = './public/images/icons/web development.png';
+              break;
+            case 'Cleaning':
+              icon = './public/images/icons/cleaning.png';
+              break;
+            case 'Woodwork and general repairs':
+              icon = './public/images/icons/carpenter.png';
+              break;
+            case 'Gardening':
+              icon = './public/images/icons/gardening.png';
+              break;
+            case 'Ironing':
+              icon = './public/images/icons/ironing.png';
+              break;
+            case 'Homework help and tutoring':
+              icon = './public/images/icons/homework.png';
+              break;
+            case 'Hairdressing':
+              icon = './public/images/icons/hairdresser.png';
+              break;
+            case 'Car washing (inside and out)':
+              icon = './public/images/icons/carwashing.png';
+              break;
+            default:
+              icon = 'image not found';
+          };
           Job.create({
             selectDescription: jobDescription,
-            additionalInformation: additionalInfoJob,
+            image: icon,
+            additionalInformation: additionalInfoJob, 
             jobowner: newUser._id,
             jobstatus: "current",
-          })
-            .then((createdJob) => {
-              Job.findOne({selectDescription: jobDescription, additionalInformation: "Example for icon"}).then((foundJob) => {
-                Job.findOneAndUpdate(createdJob._id, {image:foundJob,image})
-                res.render("profileuser")
-                 })
-               .catch((error) => {
-                 console.log("ICON ERROR", err);
-                 next(err);
-                })
+          }).then(() => res.render('profileuser'))
             .catch((err) => {
               console.log("JOB ERROR", err);
               next(err);
-            });
+            })
+          })}
         })
-        }
-    })
+      })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("signup", { errorMessage: error.message });
@@ -149,7 +178,7 @@ router.post("/signup", (req, res, next) => {
       } else {
         next(error);
       }
-    });
-})
+    })
+  })
 
 module.exports = router

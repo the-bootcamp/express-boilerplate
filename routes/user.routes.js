@@ -11,12 +11,12 @@ const mongoose = require("mongoose");
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-//router.get("/profile-user", (req, res, next) => res.render("profileuser"));
+router.get("/profile-user", (req, res, next) => res.render("profileuser"));
 
 //EDIT USER PROFILE
 router.get('/edit', (req, res) => {
   res.render('edit-details.hbs')
-}
+})
 
 router.post("/edit", (req, res) => {
   User.model.findByIdAndUpdate( userData._id, {$set: req.body})

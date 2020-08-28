@@ -39,8 +39,12 @@ const userSchema = new Schema({
   jobowner: {
     type:String
   },
-  skills: [Schema.Types.ObjectId],
-  jobs: [Schema.Types.ObjectId],
+  skills: {
+    type:[String]
+  },
+  jobs: {
+    type:[String]
+  },
   signupagreement: {
     type:String,
     required:true

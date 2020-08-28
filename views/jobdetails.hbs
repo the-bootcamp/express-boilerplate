@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Job Details</h1>
+  {{#if errorMessage}}
+  <p class="alert alert-primary" role="alert">{{errorMessage}}</p>
+  {{/if}}
+  <div class="row">
+    {{> extendedJobCard this}}
+  </div>
+  <div class="row">
+    <h5>Job Owner Details</h5>
+    <p>Name:{{this.name}}</p>
+    <p>Address:{{this.address}}</p>
+    <p>The job owner's contact details will be shared with you if you accept this job.</p>
+  </div>
+  <button type="button" class="btn btn-warning"><a href="/profile-user/acceptjob">Accept Job</a></button>
+  <button type="button" class="btn btn-secondary"><a href="/jobslist">Back</a></button>
+</div>

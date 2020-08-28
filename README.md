@@ -70,7 +70,7 @@ renders /profile-user with edited details
 deletes User model
 renders /index/delete.hbs
 
-//4 ***LYNN*** GET /jobslist
+//4 GET /jobslist - DONE
 renders job-list.hbs showing list of jobs from database
 
 //4 ***LYNN*** GET /jobdetails/:id
