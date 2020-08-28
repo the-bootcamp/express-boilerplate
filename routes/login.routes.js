@@ -50,8 +50,11 @@ router.post('/login', (req, res, next) => {
 //LOGOUT//
 router.post("/logout", (req,res) => {
 //  req.session.destroy();
-  res.redirect("/")
+  res.redirect("index.routes");
+  res.render("index");
 })
+
+
 
 router.get("profile-user", (req, res, next) => {
   res.render("profileuser", {userInSession: req.session.currentUser})
