@@ -13,6 +13,8 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/auth/signup", (req, res, next) => res.render("signup"));
 
+router.get("/auth/tandcs", (req, res, next) => res.render("tandcs"));
+
 router.post("/signup", (req, res, next) => {
   console.log("signup form submitted");
   const {

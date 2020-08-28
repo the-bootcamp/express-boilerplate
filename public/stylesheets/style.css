@@ -7,3 +7,8 @@ body {
 a {
   color: #00b7ff;
 }
+
+.card img{
+  height: 200px;
+  object-fit: cover;
+}
