@@ -160,3 +160,6 @@ const recipeSchema = new Schema({
 
 ### Slides
 [...]()
+
+
+mongodb+srv://admin:Amano_010@cluster0.rkxwe.mongodb.net/foodle?retryWrites=true&w=majority
