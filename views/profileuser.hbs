@@ -1,14 +1,14 @@
 {{#if errorMessage}}
-      <p class="alert alert-primary" role="alert">{{errorMessage}}</p>
-    {{/if}}
-
+<p class="alert alert-primary" role="alert">{{errorMessage}}</p>
+{{/if}}
+<p>The current user is {{name}}</p>
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container">
-   <ul class="nav nav-pills nav-justified">
-  <li role="presentation"><a href="/jobslist">Jobs</a></li>
-  <li role="presentation"><a href="#">Create Job</a></li>
-  <li role="presentation"><a href="/edit-details">Edit profile</a></li>
-  <li role="presentation"><a href="#">Log out</a></li>
-</ul>
+    <ul class="nav nav-pills nav-justified">
+      <li role="presentation"><a href="/jobslist">Jobs</a></li>
+      <li role="presentation"><a href="#">Create Job</a></li>
+      <li role="presentation"><a href="/edit">Edit profile</a></li>
+      <li role="presentation"><a href="#">Log out</a></li>
+    </ul>
   </div>
 </nav>
