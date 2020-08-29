@@ -13,6 +13,8 @@ const app = express();
 
 // require database configuration
 require("./configs/db.config");
+// Requiring Session
+require("./configs/session.config");
 
 // Middleware Setup
 app.use(logger("dev"));
@@ -47,7 +49,6 @@ app.use("/", require("./routes/signup.routes"));
 app.use("/", require("./routes/login.routes"));
 app.use("/", require("./routes/user.routes"));
 app.use("/", require("./routes/job.routes"));
-
 
 
 

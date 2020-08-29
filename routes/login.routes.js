@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require('../models/User.model');
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 const mongoose = require('mongoose');
 
 router.use(bodyParser.json());
@@ -37,9 +39,11 @@ router.post('/login', (req, res, next) => {
       } else if (bcrypt.compareSync(passwordHash, user.passwordHash)) {
        
 //*** Save user ***//
+
        req.session.currentUser = user;
         res.redirect('profile-user');
        // res.render("profileuser");
+ 
       }else {
         res.render('auth/login', {errorMessage: 'Incorrect password'});
       }
@@ -50,7 +54,6 @@ router.post('/login', (req, res, next) => {
 //LOGOUT//
 router.post("/logout", (req,res) => {
   req.session.destroy();
-  res.redirect("index.routes");
   res.render("index");
 })
 
