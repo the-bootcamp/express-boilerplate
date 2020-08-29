@@ -19,7 +19,7 @@ router.get('/edit', (req, res) => {
 })
 
 router.post("/edit", (req, res) => {
-  User.model.findByIdAndUpdate( userData._id, {$set: req.body})
+  User.findByIdAndUpdate( userData._id, {$set: req.body})
   .then(() => {
     res.redirect('profile-user')
   })

@@ -30,6 +30,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
+// Requiring Session
+require("./configs/session.config")(app);
+
 // default value for title local
 app.locals.title =
   "Express boilerplate made with love by your instructional team:) <3";
@@ -45,7 +48,7 @@ app.use("/", require("./routes/login.routes"));
 app.use("/", require("./routes/user.routes"));
 app.use("/", require("./routes/job.routes"));
 
-// Requiring Session
-require("./configs/session.config");
+
+
 
 module.exports = app;
