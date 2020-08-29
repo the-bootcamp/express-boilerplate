@@ -10,7 +10,15 @@ require('../configs/db.config');
 const recipes = [
   { 
     title: 'Bahn Mi', 
-    image: 'https://cdn.sunbasket.com/e024876f-61fb-4cf1-b7c7-d7228927d0de.jpg', 
+    level: 'Easy',
+    ingredients: ['milk', 'eggs', 'tomatoes'],
+    dishType: 'breakfast',
+    image: 'https://images.media-allrecipes.com/userphotos/720x405/3489951.jpg', 
+    duration: 55,
+    creator: '5f45667d4aeed029bf5bb3fd',
+    created: new Date(),
+    isVegetarian: true,
+    isVegan: false,
     description: 'Vietnamese sandwich made with chicken, beef or tofu and full of pickled vegetables.'
   },
   { 

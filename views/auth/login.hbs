@@ -6,19 +6,19 @@
         <a class="nav-link disabled" href="/">Foodle</a>
       </li>
   </nav>
-  <div class="card" style="width: 18rem;">
-    <div class="card-title">Log in!</div>
+  <div class="auth--card" style="width: 18rem;">
+    <div class="auth--card-title">Log in!</div>
     <div>
       <form action="/login" method="POST">
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="login-email" name="email" aria-describedby="emailHelp">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="login-email" name="email">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label for="password">Password</label>
           <input type="password" class="form-control" name="password" id="login-password">
         </div>
-        <button type="submit" class="btn btn-warning signup--btn">Submit</button>
+        <button type="submit" class="btn btn-warning auth--btn">Log in</button>
       </form>
     </div>
     <div>
