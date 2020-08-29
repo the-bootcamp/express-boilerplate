@@ -15,4 +15,22 @@ router.get('/recipes', (req, res) => {
     .catch(error => `Error while getting the list of recipes: ${error}`);
 });
 
+/* GET new recipe page */
+
+router.get('/create', (req, res, next) => res.render('recipes/add-new-recipe'));
+
+/* GET recipe details */
+router.get('/recipes/:recipeId', (req, res) => {
+  const { recipeId } = req.params;
+console.log(recipeId)
+  Recipe.findById(recipeId)
+    .then(recipeToDisplay => {
+      console.log('this' + recipeToDisplay)
+      res.render('recipes/recipe-details', recipeToDisplay);
+    })
+    .catch(err =>
+      console.log(`Err while getting the specific recipe from the  DB: ${err}`)
+    );
+});
+
 module.exports = router;

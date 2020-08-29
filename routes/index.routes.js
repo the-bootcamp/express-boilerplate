@@ -88,4 +88,6 @@ router.post('/login', (req, res, next) => {
 
 router.get('/userProfile', (req, res, next) => res.render('user/userProfile'));
 
+
+
 module.exports = router;
