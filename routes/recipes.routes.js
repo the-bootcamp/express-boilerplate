@@ -19,6 +19,14 @@ router.get('/recipes', (req, res) => {
 
 router.get('/create', (req, res, next) => res.render('recipes/add-new-recipe'));
 
+router.post('/create', (req, res) => {
+  const { title, level, ingredient, dishType, duration, isVegetarian, isVegan, description } = req.body;
+
+  Recipe.create({ title, level, dishType, ingredient, duration, isVegetarian, isVegan, description })
+    .then(() => res.redirect('/recipes'))
+    .catch(error => `Error while creating a new recipe: ${error}`);
+});
+
 /* GET recipe details */
 router.get('/recipes/:recipeId', (req, res) => {
   const { recipeId } = req.params;
