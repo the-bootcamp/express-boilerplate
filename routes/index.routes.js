@@ -86,7 +86,7 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-router.get('/user-profile', (req, res, next) => res.render('user/user-profile'));
+router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
 
 // LOGOUT
 router.post('/logout', (req, res) => {
