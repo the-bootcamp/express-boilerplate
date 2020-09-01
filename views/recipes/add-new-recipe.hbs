@@ -1,63 +1,85 @@
-<section id="add-new-recipe">
-  {{>navbar}}
-  <div class="recipe-card">
-    <div class="recipe-card-title">Add a new recipe!</div>
-      <div>
-        <form action="/create" method="POST">
-          <div class="form-group">
-            <label>Title</label>
-            <input type="text" class="form-control" id="title" name="title">
-          </div>
-          <div class="d-flex">
-            <div class="form-group mr-5">
-              <label for="level">Level:</label>
-              <div>
-                <select id="level" name="level">
-                  <option value="Easy">Easy</option>
-                  <option value="Amateur">Amateur</option>
-                  <option value="Professional">Professional</option>
-                </select>
-              </div>
-            </div>
+
+{{#if userInSession}}    
+ {{>navbar}}
+  <section id="add-new-recipe">
+    <div class="recipe-card">
+      <div class="recipe-card-title">Add a new recipe!</div>
+        <div>
+          <form action="/create" method="POST">
             <div class="form-group">
-              <label for="dishType">Dish Type:</label>
+              <label>Title</label>
+              <input type="text" id="title" name="title" required>
+            </div>
+            <div class="d-flex">
+              <div class="mr-5">
+                <label for="level">Level:</label>
                 <div>
-                  <select id="dishType" name="dishType">
-                    <option value="breakfast">Breakfast</option>
-                    <option value="starter">Starter</option>
-                    <option value="main_course">Main course</option>
-                    <option value="soup">Soup</option>
-                    <option value="snack">Snack</option>
-                    <option value="shake">Shake</option>
-                    <option value="dessert">Dessert</option>
-                    <option value="other">Other</option>
+                  <select id="level" name="level" required>
+                    <option value="Easy">Easy</option>
+                    <option value="Amateur">Amateur</option>
+                    <option value="Professional">Professional</option>
                   </select>
                 </div>
+              </div>
+              <div class="form-group">
+                <label for="dishType">Dish Type:</label>
+                  <div>
+                    <select id="dishType" name="dishType" required>
+                      <option value="breakfast">Breakfast</option>
+                      <option value="starter">Starter</option>
+                      <option value="main_course">Main course</option>
+                      <option value="soup">Soup</option>
+                      <option value="snack">Snack</option>
+                      <option value="shake">Shake</option>
+                      <option value="dessert">Dessert</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+              </div>
             </div>
-          </div>
-          <div id="ingredients-container" class="form-group">
-            <label for="ingredients">Ingredients:</label>
-            <textarea id="ingredients" name="ingredients" rows="2" cols="35"></textarea>
-          </div>
-          <div class="form-group">
-            <label>Time to prepare:</label>
-            <input class="new-recipe--time" type="number" class="form-control" id="duration" name="duration"> minutes
-          </div>
-          <div class="form-group d-flex">
-            <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian" name="isVegetarian" value="false">
-            <label class="mr-4" for="isVegetarian">Vegeterian dish</label><br>
-            <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegan" name="isVegan" value="false">
-            <label for="isVegan">Vegan dish</label><br>
-          </div>
-          <div class="form-group">
-            <label for="description">Procedure:</label>
-            <textarea id="description" name="description" rows="4" cols="35"></textarea>
-          </div>
-          <button type="submit" class="btn btn-warning new-recipe--btn">Add</button>
-        </form>
-      </div>
+            <div id="ingredients-container" class="form-group">
+              <label for="ingredients">Ingredients:</label>
+              <textarea id="ingredients" name="ingredients" rows="2" cols="35" required></textarea>
+            </div>
+            <div>
+              <label>Time to prepare:</label>
+              <input class="new-recipe--time" type="number" class="form-control" id="duration" name="duration" required> minutes
+            </div>
+            <div class="form-group d-flex">
+              <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian" name="isVegetarian" value="false">
+              <label class="mr-4" for="isVegetarian">Vegeterian dish</label><br>
+              <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegan" name="isVegan" value="false">
+              <label for="isVegan">Vegan dish</label><br>
+            </div>
+            <div class="form-group">
+              <label for="description">Procedure:</label>
+              <textarea id="description" name="description" rows="4" cols="35" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning new-recipe--btn">Add</button>
+          </form>
+        </div>
+    </div>
+  </section>
+{{else}}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <ul class="navbar-nav mr-auto">
+    <a class="navbar-brand" href="/recipes">Logo</a>
+    <li class="nav-item active">
+      <a class="nav-link disabled" href="/">Foodle</a>
+    </li>
+  </ul>
+</nav>
+
+<section id="error-container">
+  <div class="alert text-center auth--card " role="alert">
+    <h1>Error!</h1>
+    <h2>Still no logged in user, sorry!</h2>
+    <a href="/login"><button type="button" class="btn btn-outline-danger btn-lg">Log in</button></a>
+    <a href="/signup"><button type="button" class="btn btn-outline-danger btn-lg">Sign up</button></a>
   </div>
 </section>
+{{/if}}
+
 
 <script>
   const ingredientContainer = document.getElementById('ingredients-container');
