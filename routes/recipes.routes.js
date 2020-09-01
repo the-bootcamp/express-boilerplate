@@ -21,8 +21,9 @@ router.get('/create', (req, res, next) => res.render('recipes/add-new-recipe', {
 
 router.post('/create', (req, res) => {
   const { title, level, ingredient, dishType, duration, isVegetarian, isVegan, description } = req.body;
-
-  Recipe.create({ title, level, dishType, ingredient, duration, isVegetarian, isVegan, description })
+  const creator = req.session.currentUser._id;
+  
+  Recipe.create({ title, level, dishType, ingredient, duration, isVegetarian, isVegan, description, creator })
     .then(() => res.redirect('/recipes'))
     .catch(error => `Error while creating a new recipe: ${error}`);
 });
@@ -30,10 +31,9 @@ router.post('/create', (req, res) => {
 /* GET recipe details */
 router.get('/recipes/:recipeId', (req, res) => {
   const { recipeId } = req.params;
-console.log(recipeId)
+
   Recipe.findById(recipeId)
     .then(recipeToDisplay => {
-      console.log('this' + recipeToDisplay)
       res.render('recipes/recipe-details', { recipeToDisplay, userInSession: req.session.currentUser });
     })
     .catch(err =>
