@@ -5,16 +5,21 @@
     <div class="recipe-card">
       <div class="recipe-card-title">Add a new recipe!</div>
         <div>
+          {{#each errors}}
+            <div class="error">
+              <p>{{text}}</p>
+            </div>
+          {{/each}}
           <form action="/create" method="POST">
             <div class="form-group">
               <label>Title</label>
-              <input type="text" id="title" name="title" required>
+              <input type="text" id="title" name="title" value={{title}}>
             </div>
             <div class="d-flex">
               <div class="mr-5">
                 <label for="level">Level:</label>
                 <div>
-                  <select id="level" name="level" required>
+                  <select id="level" name="level">
                     <option value="Easy">Easy</option>
                     <option value="Amateur">Amateur</option>
                     <option value="Professional">Professional</option>
@@ -24,7 +29,7 @@
               <div class="form-group">
                 <label for="dishType">Dish Type:</label>
                   <div>
-                    <select id="dishType" name="dishType" required>
+                    <select id="dishType" name="dishType">
                       <option value="breakfast">Breakfast</option>
                       <option value="starter">Starter</option>
                       <option value="main_course">Main course</option>
@@ -39,11 +44,11 @@
             </div>
             <div id="ingredients-container" class="form-group">
               <label for="ingredients">Ingredients:</label>
-              <textarea id="ingredients" name="ingredients" rows="2" cols="35" required></textarea>
+              <textarea id="ingredients" name="ingredients" rows="2" cols="35">{{ingredients}}</textarea>
             </div>
             <div>
               <label>Time to prepare:</label>
-              <input class="new-recipe--time" type="number" class="form-control" id="duration" name="duration" required> minutes
+              <input class="new-recipe--time" type="number" class="form-control" id="duration" name="duration" value={{duration}}> minutes
             </div>
             <div class="form-group d-flex">
               <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian" name="isVegetarian" value="false">
@@ -53,7 +58,7 @@
             </div>
             <div class="form-group">
               <label for="description">Procedure:</label>
-              <textarea id="description" name="description" rows="4" cols="35" required></textarea>
+              <textarea id="description" name="description" rows="4" cols="35"></textarea>
             </div>
             <button type="submit" class="btn btn-warning new-recipe--btn">Add</button>
           </form>

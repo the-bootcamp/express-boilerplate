@@ -1,6 +1,6 @@
 const express = require('express');
 
-// require the Recipe model here
+/* require the Recipe model here */
 const Recipe = require('../models/Recipe.model');
 
 const router = express.Router();
@@ -15,17 +15,45 @@ router.get('/recipes', (req, res) => {
     .catch(error => `Error while getting the list of recipes: ${error}`);
 });
 
-/* GET new recipe page */
+/* GET AND POST new recipe page */
 
 router.get('/create', (req, res, next) => res.render('recipes/add-new-recipe', { userInSession: req.session.currentUser }));
 
 router.post('/create', (req, res) => {
   const { title, level, ingredient, dishType, duration, isVegetarian, isVegan, description } = req.body;
   const creator = req.session.currentUser._id;
+  const errors = [];
   
-  Recipe.create({ title, level, dishType, ingredient, duration, isVegetarian, isVegan, description, creator })
-    .then(() => res.redirect('/recipes'))
-    .catch(error => `Error while creating a new recipe: ${error}`);
+  if(!title) {
+    errors.push({ text: 'Please add a title' });
+  }
+  if(!ingredient) {
+    errors.push({ text: 'Please add some ingredients' });
+  }
+  if(!duration) {
+    errors.push({ text: 'Please add the time' });
+  }
+  if(!description) {
+    errors.push({ text: 'Please add a description' });
+  }
+  if(errors.length > 0) {
+    res.render('recipes/add-new-recipe', {
+      errors,
+      title, 
+      ingredient, 
+      duration, 
+      description, 
+      level,
+      dishType,
+      isVegan,
+      isVegetarian,
+      userInSession: req.session.currentUser
+    });
+  } else {
+    Recipe.create({ title, level, dishType, ingredient, duration, isVegetarian, isVegan, description, creator })
+      .then(() => res.redirect('/recipes'))
+      .catch(error => `Error while creating a new recipe: ${error}`);
+  }
 });
 
 /* GET recipe details */
