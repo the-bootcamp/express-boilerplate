@@ -84,6 +84,20 @@ router.post('/create', (req, res) => {
   }
 });
 
+
+/* Seach for recipes */
+router.get('/recipes/search', (req, res) => {
+  let { term } = req.query;
+  term = new RegExp(term, 'i');
+
+  Recipe.find({ title: term }).exec()
+    .then(recipes => {
+      console.log('recipes => ', recipes);
+      res.render('recipes/allRecipes', { recipes, userInSession: req.session.currentUser })
+    })
+    .catch(err => res.render('error', {error: err}));
+});
+
 /* GET recipe details */
 router.get('/recipes/:recipeId', (req, res) => {
   const { recipeId } = req.params;
@@ -96,5 +110,4 @@ router.get('/recipes/:recipeId', (req, res) => {
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
     );
 });
-
 module.exports = router;
