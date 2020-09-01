@@ -8,6 +8,10 @@ body {
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
+h1, h2, h3, h4, h5 {
+  margin: 0
+}
+
 a {
   color: #00b7ff;
 }
@@ -47,12 +51,12 @@ section {
 /* Navbar */
 
 .navbar {
-  overflow: hidden;
+  overflow-y: visible;
+  z-index: 10;
   background-color: #fff;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 10;
 }
 
 #navbarSupportedContent {
@@ -83,7 +87,7 @@ section {
   padding: 40px;
   margin: 20px auto;
   background-color: #fff;
-  opacity: 0.92;
+  opacity: 0.95;
 }
 
 .auth--card-title {
@@ -113,7 +117,7 @@ section {
   padding: 40px;
   margin: 20px auto;
   background-color: #fff;
-  opacity: 0.92;
+  opacity: 0.95;
   text-align: center;
 }
 
@@ -138,7 +142,7 @@ section {
   height: 100%;
   border: none;
   border-radius: 0;
-  background-color: rgba(248, 249, 250, 0.92);
+  background-color: rgba(248, 249, 250, 0.95);
 }
 
 .card-img-top {
@@ -156,6 +160,11 @@ section {
 .recipes-card--btn {
   width: 100%;
   border-radius: 0;
+}
+
+.recipes-card--btn:hover {
+  border: none;
+  background-color: transparent;
 }
 
 /* Error Page */
@@ -221,7 +230,7 @@ section {
   padding: 40px;
   margin: 20px auto;
   background-color: #fff;
-  opacity: 0.92;
+  opacity: 0.95;
 }
 
 .recipe-card-title {
@@ -244,4 +253,15 @@ section {
 .recipe-info > ul{
   list-style: none;
   padding: 10px;
+}
+
+/* User Profile Page */
+
+.profile--box {
+  max-width: 800px;
+  padding: 40px;
+  margin: 20px auto;
+  background-color: #fff;
+  opacity: 0.95;
+  text-align: center;
 }
