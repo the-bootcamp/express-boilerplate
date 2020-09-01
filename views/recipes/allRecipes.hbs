@@ -1,12 +1,16 @@
 <section id="recipes">
   {{>navbar}}
   <div class="container">
-    <div class="card-deck mt-5">
-      <div class="row equal">
-        {{#each recipes}}
-          {{> recipeCard }}
-        {{/each}}
+    <div class="featured-recipes">
+      <h2 class="recipes--title">Features Recipes</h2>
+      <div class="card-deck mt-3">
+        <div class="row equal">
+          {{#each recipes}}
+            {{> recipeCard }}
+          {{/each}}
+        </div>
       </div>
     </div>
+    
   </div>
 </section>
