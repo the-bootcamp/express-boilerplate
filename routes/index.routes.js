@@ -39,6 +39,7 @@ router.post('/signup', (req, res, next) => {
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
       req.session.currentUser = userFromDB;
+  
       res.redirect('/recipes');
     })
     .catch(error => {
@@ -76,7 +77,6 @@ router.post('/login', (req, res, next) => {
         res.render('auth/login', { errorMessage: 'Email is not registered. Try with other email.' });
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
-
         req.session.currentUser = user;
         res.redirect('/recipes');
       } else {
@@ -86,7 +86,39 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
+<<<<<<< HEAD
 router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
+=======
+/* GET user profile page */
+router.get('/users/profile', (req, res) => {
+  console.log(req.session)
+  const { currentUser } = req.session;
+
+  User.findById(currentUser._id)
+    .then(userToDisplay => {
+      console.log('this' + userToDisplay)
+      res.render('users/user-profile', userToDisplay );
+    })
+    .catch(err =>
+      console.log(`Err while getting the specific user profile from the  DB: ${err}`)
+    );
+});
+
+// /* GET recipe details */
+// router.get('/recipes/:recipeId', (req, res) => {
+//   const { recipeId } = req.params;
+// console.log(recipeId)
+//   Recipe.findById(recipeId)
+//     .then(recipeToDisplay => {
+//       console.log('this' + recipeToDisplay)
+//       res.render('recipes/recipe-details', recipeToDisplay);
+//     })
+//     .catch(err =>
+//       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
+//     );
+// });
+
+>>>>>>> add-recipe-page
 
 // LOGOUT
 router.post('/logout', (req, res) => {

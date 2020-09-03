@@ -15,6 +15,7 @@ const recipeSchema = new Schema(
     isVegan: Boolean,
     description: String,
     premiumContent: String,
+    featuredRecipe: Boolean
     //image:
   },
   {
