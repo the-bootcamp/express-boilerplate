@@ -78,6 +78,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
         req.session.currentUser = user;
+       
         res.redirect('/recipes');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
@@ -86,9 +87,9 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-<<<<<<< HEAD
+
 router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
-=======
+
 /* GET user profile page */
 router.get('/users/profile', (req, res) => {
   console.log(req.session)
@@ -118,7 +119,6 @@ router.get('/users/profile', (req, res) => {
 //     );
 // });
 
->>>>>>> add-recipe-page
 
 // LOGOUT
 router.post('/logout', (req, res) => {

@@ -20,14 +20,14 @@ router.get('/recipes', (req, res) => {
 router.get('/create', (req, res, next) => res.render('recipes/add-new-recipe', { userInSession: req.session.currentUser }));
 
 router.post('/create', (req, res) => {
-  const { title, level, ingredient, dishType, duration, isVegetarian, isVegan, description } = req.body;
+  const { title, level, ingredients, dishType, duration, isVegetarian, isVegan, description } = req.body;
   const creator = req.session.currentUser._id;
   const errors = [];
   
   if(!title) {
     errors.push({ text: 'Please add a title' });
   }
-  if(!ingredient) {
+  if(!ingredients) {
     errors.push({ text: 'Please add some ingredients' });
   }
   if(!duration) {
@@ -40,7 +40,7 @@ router.post('/create', (req, res) => {
     res.render('recipes/add-new-recipe', {
       errors,
       title, 
-      ingredient, 
+      ingredients, 
       duration, 
       description, 
       level,
@@ -50,7 +50,9 @@ router.post('/create', (req, res) => {
       userInSession: req.session.currentUser
     });
   } else {
-    Recipe.create({ title, level, dishType, ingredient, duration, isVegetarian, isVegan, description, creator })
+    ingredients = ingredients.toLowerCase();
+
+    Recipe.create({ title, level, dishType, ingredients, duration, isVegetarian, isVegan, description, creator })
       .then(() => res.redirect('/recipes'))
       .catch(error => `Error while creating a new recipe: ${error}`);
   }
