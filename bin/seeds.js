@@ -9,7 +9,7 @@ require('../configs/db.config');
 // List of recipes
 const recipes = [
   { 
-    title: 'Bahn Mi', 
+    title: 'Bahn Mgit sti', 
     level: 'Easy',
     ingredients: ['milk', 'eggs', 'tomatoes'],
     dishType: 'Breakfast',

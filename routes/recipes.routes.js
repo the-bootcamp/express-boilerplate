@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/recipes', (req, res) => {
   console.log('req', req.query)
   let { level, dishType, isVegetarian, isVegan } = req.query;
-
+    console.log('veg ', isVegetarian)
   if (level || dishType || isVegetarian || isVegan) {
     const filter = {};
     if (level) {
