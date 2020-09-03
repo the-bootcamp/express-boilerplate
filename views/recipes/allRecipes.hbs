@@ -7,7 +7,9 @@
       <div class="card-deck mt-3">
         <div class="row equal">
           {{#each recipes}}
-            {{> recipeCard }}
+            {{#if this.featuredRecipe}}
+              {{> recipeCard }}
+            {{/if}}
           {{/each}}
         </div>
       </div>
