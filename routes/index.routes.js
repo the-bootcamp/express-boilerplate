@@ -86,9 +86,7 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-<<<<<<< HEAD
 router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
-=======
 /* GET user profile page */
 router.get('/users/profile', (req, res) => {
   console.log(req.session)
@@ -104,21 +102,6 @@ router.get('/users/profile', (req, res) => {
     );
 });
 
-// /* GET recipe details */
-// router.get('/recipes/:recipeId', (req, res) => {
-//   const { recipeId } = req.params;
-// console.log(recipeId)
-//   Recipe.findById(recipeId)
-//     .then(recipeToDisplay => {
-//       console.log('this' + recipeToDisplay)
-//       res.render('recipes/recipe-details', recipeToDisplay);
-//     })
-//     .catch(err =>
-//       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
-//     );
-// });
-
->>>>>>> add-recipe-page
 
 // LOGOUT
 router.post('/logout', (req, res) => {

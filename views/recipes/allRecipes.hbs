@@ -2,6 +2,7 @@
 <section id="recipes">
   {{>navbar}}
   <div class="container">
+    {{!-- Featured Recipe Box --}}
     <div class="featured-recipes">
       <h2 class="recipes--title">Features Recipes</h2>
       <div class="card-deck mt-3">
@@ -10,6 +11,18 @@
             {{#if this.featuredRecipe}}
               {{> recipeCard }}
             {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+
+    {{!-- Added Recipe Box --}}
+    <div class="added-recipes">
+      <h2 class="recipes--title">Newest Recipes</h2>
+      <div class="card-deck mt-3">
+        <div class="row equal">
+          {{#each recipes}}
+            {{> recipeCard }}
           {{/each}}
         </div>
       </div>
