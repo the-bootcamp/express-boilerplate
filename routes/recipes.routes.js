@@ -7,12 +7,38 @@ const router = express.Router();
 
 /* GET recipes page */
 router.get('/recipes', (req, res) => {
-  Recipe.find()
+  console.log('req', req.query)
+  let { level, dishType, isVegetarian, isVegan } = req.query;
+
+  if (level || dishType || isVegetarian || isVegan) {
+    const filter = {};
+    if (level) {
+      filter.level = level;
+    }
+    if (dishType) {
+      filter.dishType = dishType;
+    }
+    if (isVegetarian) {
+      filter.isVegetarian = isVegetarian;
+    }
+    if (isVegan) {
+      filter.isVegan = isVegan;
+    }
+
+
+    Recipe.find(filter)
+    .then(filteredRecipesFromDB => {
+      console.log(filteredRecipesFromDB);
+      res.render('./recipes/allRecipes', { recipes: filteredRecipesFromDB, userInSession: req.session.currentUser });
+    })
+    .catch(error => `Error while getting the list of recipes: ${error}`);    
+  } else {
+    Recipe.find()
     .then(recipesFromDB => {
-      console.log(recipesFromDB);
       res.render('./recipes/allRecipes', { recipes: recipesFromDB, userInSession: req.session.currentUser });
     })
     .catch(error => `Error while getting the list of recipes: ${error}`);
+  }
 });
 
 /* GET new recipe page */
