@@ -9,6 +9,11 @@
   <div class="auth--card" style="width: 18rem;">
     <div class="auth--card-title">Log in!</div>
     <div>
+      {{#if errorMessage}}
+        <div class="error">
+          <p>{{errorMessage}}</p>
+        </div>
+      {{/if}}
       <form action="/login" method="POST">
         <div class="form-group">
           <label for="email">Email address</label>
