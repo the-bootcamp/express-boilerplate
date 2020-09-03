@@ -46,7 +46,7 @@ router.get('/recipes', (req, res) => {
 router.get('/create', (req, res, next) => res.render('recipes/add-new-recipe', { userInSession: req.session.currentUser }));
 
 router.post('/create', (req, res) => {
-  const { title, level, ingredient, dishType, duration, isVegetarian, isVegan, description } = req.body;
+  const { title, level, ingredients, dishType, duration, isVegetarian, isVegan, description } = req.body;
 
   Recipe.create({ title, level, dishType, ingredient, duration, isVegetarian, isVegan, description })
     .then(() => res.redirect('/recipes'))
