@@ -6,7 +6,7 @@ const recipeSchema = new Schema(
     title: String,
     level: {type: String, enum: ['Easy', 'Amateur', 'Professional']},
     ingredients: [String],
-    dishType: {type: String, enum: ['breakfast', 'starter', 'main_course', 'soup', 'snack', 'shake', 'dessert', 'beverage','other']},
+    dishType: {type: String, enum: ['Breakfast', 'Starter', 'Main course', 'Soup', 'Snack', 'Shake', 'Dessert', 'Beverage','Other']},
     image: {type: String, default: ''},
     duration: {type: Number, min: 0},
     creator: String,
@@ -15,6 +15,7 @@ const recipeSchema = new Schema(
     isVegan: Boolean,
     description: String,
     premiumContent: String,
+    featuredRecipe: Boolean
     //image:
   },
   {

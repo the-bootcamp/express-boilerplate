@@ -1,0 +1,28 @@
+{{>navbar}}
+<section id="user-profile">
+  <div class="profile--box">
+    <h1>Welcome {{username}}</h1>
+
+    {{!-- User Recipes --}}
+    <div class="my-recipes">
+      <h2>My Recipes</h2>
+      <div class="card-deck mt-5">
+        <div class="row equal">
+          <p>You have not created any recipe.</p>
+          {{!-- {{#each recipes}}
+              {{> recipeCard }}
+            {{/each}}
+          {{#if}}
+            {{#each recipes}}
+              {{> recipeCard }}
+            {{/each}}
+          {{else}}
+            <p>You have not created any recipe.</p>
+          {{/if}}
+          {{/if}} --}}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

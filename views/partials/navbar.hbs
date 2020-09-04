@@ -13,18 +13,46 @@
         <li class="nav-item">
           <a class="nav-link  navbar--color" href="/create">Add new</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link  navbar--color" href="/user-profile">My Profile</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle  navbar--color" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Filter
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <form action="/recipes" method="GET">
+              <div class="form-group">
+                <label for="level-input">Level</label>
+                <select class="form-control" id="level-input" name="level">
+                  <option></option>
+                  <option>Easy</option>
+                  <option>Amateur</option>
+                  <option>Professional</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="dishType-input">Dish Type</label>
+                <select class="form-control" id="dishType-input" name="dishType">
+                  <option></option>
+                  <option>Breakfast</option>
+                  <option>Starter</option>
+                  <option>Main Course</option>
+                  <option>Soup</option>
+                  <option>Snack</option>
+                  <option>Shake</option>
+                  <option>Dessert</option>
+                  <option>Beverage</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian-input" name="isVegetarian" value="true">
+                <label class="mr-4" for="isVegetarian">Vegeterian dish</label><br>
+              </div>
+              <div class="form-group">
+                <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegan-input" name="isVegan" value="true">
+                <label class="mr-4" for="isVegan">Vegan dish</label><br>
+              </div>
+              <button type="submit" class="btn btn-warning auth--btn">Apply filters</button>
+            </form>
           </div>
         </li>
       </ul>
@@ -36,6 +64,9 @@
       </form>
     </div>
     <div class="nav-buttons">
+      <a href="/users/profile">
+        <button class="btn btn-outline-warning mr-2">My Profile</button>
+      </a>
       <form id="logout-form" action="/logout" method="POST">
         <button type="submit" class="btn btn-warning">Logout</button>
       </form>
