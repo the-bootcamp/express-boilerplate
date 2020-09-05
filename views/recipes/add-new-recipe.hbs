@@ -1,5 +1,5 @@
 
-{{#if userInSession}}    
+{{#if userInSession}}
  {{>navbar}}
   <section id="add-new-recipe">
     <div class="recipe-card">
@@ -10,7 +10,7 @@
               <p>{{text}}</p>
             </div>
           {{/each}}
-          <form action="/create" method="POST">
+          <form id="add-recipe-form" action="/create" method="POST">
             <div class="form-group">
               <label>Title</label>
               <input type="text" id="title" name="title" value={{title}}>
@@ -23,21 +23,20 @@
                     <option value="Easy">Easy</option>
                     <option value="Amateur">Amateur</option>
                     <option value="Professional">Professional</option>
-                  </select>
                 </div>
               </div>
               <div class="form-group">
                 <label for="dishType">Dish Type:</label>
                   <div>
                     <select id="dishType" name="dishType">
-                      <option value="breakfast">Breakfast</option>
-                      <option value="starter">Starter</option>
-                      <option value="main_course">Main course</option>
-                      <option value="soup">Soup</option>
-                      <option value="snack">Snack</option>
-                      <option value="shake">Shake</option>
-                      <option value="dessert">Dessert</option>
-                      <option value="other">Other</option>
+                      <option value="Breakfast">Breakfast</option>
+                      <option value="Starter">Starter</option>
+                      <option value="Main course">Main course</option>
+                      <option value="Soup">Soup</option>
+                      <option value="Snack">Snack</option>
+                      <option value="Shake">Shake</option>
+                      <option value="Dessert">Dessert</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
               </div>
@@ -85,22 +84,42 @@
 </section>
 {{/if}}
 
-
 <script>
+  const formContainer = document.getElementById('add-recipe-form');
   const ingredientContainer = document.getElementById('ingredients-container');
   const ingredientInput = document.getElementById('ingredients');
+  let ingredients = [];
+
+  const createBadge = (ingredient) => {
+    const badge = document.createElement('span');
+    badge.classList.add("badge", "badge-pill", "badge-warning");
+    badge.innerHTML = ingredient;
+
+    if (ingredient !== '') {
+      ingredients.push(ingredient);
+    }
+
+    ingredientInput.value = '';
+    ingredientContainer.appendChild(badge);
+  }
+
+  window.addEventListener('load', () => {
+    const oldIngredients = ingredientInput.value.split(',');
+    oldIngredients.forEach((ingredient) => createBadge(ingredient));
+  })
+
   ingredientInput.addEventListener('keydown', (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-        
+
         const ingredient = ingredientInput.value;
-
-        const badge = document.createElement('span');
-        badge.classList.add("badge", "badge-pill", "badge-warning");
-        badge.innerHTML = ingredient;
-
-        ingredientInput.value = '';
-        ingredientContainer.appendChild(badge);
+        createBadge(ingredient);
     }
+  })
+
+  formContainer.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formContainer.ingredients.value = ingredients;
+      formContainer.submit();
   })
 </script>

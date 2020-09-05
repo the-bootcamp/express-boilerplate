@@ -31,7 +31,7 @@ router.get('/recipes', (req, res) => {
       console.log(filteredRecipesFromDB);
       res.render('./recipes/allRecipes', { recipes: filteredRecipesFromDB, userInSession: req.session.currentUser });
     })
-    .catch(error => `Error while getting the list of recipes: ${error}`);    
+    .catch(error => `Error while getting the list of recipes: ${error}`);
   } else {
     Recipe.find()
     .then(recipesFromDB => {
@@ -46,10 +46,13 @@ router.get('/recipes', (req, res) => {
 router.get('/create', (req, res, next) => res.render('recipes/add-new-recipe', { userInSession: req.session.currentUser }));
 
 router.post('/create', (req, res) => {
-  const { title, level, ingredients, dishType, duration, isVegetarian, isVegan, description } = req.body;
+  let { title, level, ingredients, dishType, duration, isVegetarian = false, isVegan = false, description } = req.body;
   const creator = req.session.currentUser._id;
   const errors = [];
-  
+
+  ingredients = ingredients.split(',');
+  duration = Number(duration);
+
   if(!title) {
     errors.push({ text: 'Please add a title' });
   }
@@ -62,13 +65,14 @@ router.post('/create', (req, res) => {
   if(!description) {
     errors.push({ text: 'Please add a description' });
   }
+
   if(errors.length > 0) {
     res.render('recipes/add-new-recipe', {
       errors,
-      title, 
-      ingredients, 
-      duration, 
-      description, 
+      title,
+      ingredients,
+      duration,
+      description,
       level,
       dishType,
       isVegan,
@@ -76,11 +80,20 @@ router.post('/create', (req, res) => {
       userInSession: req.session.currentUser
     });
   } else {
-    ingredients = ingredients.toLowerCase();
-
-    Recipe.create({ title, level, dishType, ingredients, duration, isVegetarian, isVegan, description, creator })
-      .then(() => res.redirect('/recipes'))
-      .catch(error => `Error while creating a new recipe: ${error}`);
+    Recipe.create({
+      title,
+      level,
+      dishType,
+      ingredients,
+      duration,
+      isVegetarian,
+      isVegan,
+      description,
+      creator
+    })
+    .then(() => res.redirect('/recipes'))
+    .catch(error => {console.log('error ', error);
+    `Error while creating a new recipe: ${error}`});
   }
 });
 
