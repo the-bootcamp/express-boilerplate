@@ -108,6 +108,18 @@ router.get('/users/profile', (req, res) => {
     );
 });
 
+/* Delete a recipe*/
+
+router.post('/users/profile/:id/delete', (req, res) => {
+  const { id } = req.params;
+
+  Recipe.findByIdAndDelete(id)
+    .then(() => res.redirect('/users/profile'))
+    .catch(error => console.log(`Error while deleting a recipe: ${error}`));
+});
+
+
+
 // LOGOUT
 router.post('/logout', (req, res) => {
   req.session.destroy();

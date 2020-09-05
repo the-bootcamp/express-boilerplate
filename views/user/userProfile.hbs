@@ -8,6 +8,9 @@
         <div class="row equal">
           {{#each recipesToDisplay}}
             {{> recipeCard }}
+            <form action="/users/profile/{{_id}}/delete" method="POST">
+              <button>Delete</button>
+            </form>
           {{/each}}
         </div>
       </div>
