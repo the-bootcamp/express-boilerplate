@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const mongoose = require('mongoose');
 const User = require('../models/User.model');
+const Recipe = require('../models/Recipe.model');
 
 /* GET home page */
 router.get('/', (req, res, next) => res.render('index'));
@@ -39,7 +40,7 @@ router.post('/signup', (req, res, next) => {
     .then(userFromDB => {
       console.log('Newly created user is: ', userFromDB);
       req.session.currentUser = userFromDB;
-  
+
       res.redirect('/recipes');
     })
     .catch(error => {
@@ -79,7 +80,7 @@ router.post('/login', (req, res, next) => {
       } else if (bcryptjs.compareSync(password, user.passwordHash)) {
 
         req.session.currentUser = user;
-       
+
         res.redirect('/recipes');
       } else {
         res.render('auth/login', { errorMessage: 'Incorrect password.' });
@@ -96,27 +97,16 @@ router.get('/users/profile', (req, res) => {
   User.findById(currentUser._id)
     .then(userToDisplay => {
       console.log('this' + userToDisplay)
-      res.render('users/user-profile', userToDisplay );
-    })
+      Recipe.find({ creator: userToDisplay._id })
+        .then(recipesToDisplay => {
+                console.log('recipesToDisplay' + recipesToDisplay)
+          res.render('user/userProfile', { recipesToDisplay, userToDisplay, userInSession: req.session.currentUser } );
+        })
+      })
     .catch(err =>
       console.log(`Err while getting the specific user profile from the  DB: ${err}`)
     );
 });
-
-// /* GET recipe details */
-// router.get('/recipes/:recipeId', (req, res) => {
-//   const { recipeId } = req.params;
-// console.log(recipeId)
-//   Recipe.findById(recipeId)
-//     .then(recipeToDisplay => {
-//       console.log('this' + recipeToDisplay)
-//       res.render('recipes/recipe-details', recipeToDisplay);
-//     })
-//     .catch(err =>
-//       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
-//     );
-// });
-
 
 // LOGOUT
 router.post('/logout', (req, res) => {

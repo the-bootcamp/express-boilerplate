@@ -97,7 +97,6 @@ router.post('/create', (req, res) => {
   }
 });
 
-
 /* Seach for recipes */
 router.get('/recipes/search', (req, res) => {
   let { term } = req.query;
