@@ -1,0 +1,36 @@
+<section id="recipe-details" style="background-image: url({{image}})">
+  <div class="recipe-card">
+    <h1 class="recipe-title">{{title}}</h1>
+    <p class="recipe-lead">{{description}}</p>
+    <div class="recipe-main">
+      <div class="recipe-ingredients">
+        <h5>Ingredients:</h5>
+        <ul>
+          {{#each ingredients}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="recipe-info">
+        <h5>Level: {{level}}</h5>
+        <h5>Type: {{dishType}}</h5>
+        <h5>Preparation: {{duration}} minutes</h5>
+        {{#if isVegetarian}}
+          <i class="fas fa-leaf fa-2x"></i>
+        {{/if}}
+      </div>   
+    </div>
+
+    <div class="recipe-directions">
+      <h4 class="recipe-directions--header">Directions</h4>
+      <div class="recipe-directions--step">
+        <span>
+          <i class="fas fa-chevron-circle-right"></i>
+          <h5>Step1</h5>
+        </span>
+        
+        <p>Preheat the oven's broiler. Place the pork chops on a broiling pan and set under the broiler. Cook for about 5 minutes, turning once, or until browned on each side.</p>
+      </div>
+    </div>
+  </div>
+</section>

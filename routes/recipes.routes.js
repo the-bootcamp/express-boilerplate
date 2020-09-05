@@ -104,10 +104,12 @@ router.get('/recipes/:recipeId', (req, res) => {
 
   Recipe.findById(recipeId)
     .then(recipeToDisplay => {
-      res.render('recipes/recipe-details', { recipeToDisplay, userInSession: req.session.currentUser });
+      res.render('recipes/recipe-details', { recipe: recipeToDisplay, userInSession: req.session.currentUser });
     })
     .catch(err =>
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
     );
 });
+
+
 module.exports = router;
