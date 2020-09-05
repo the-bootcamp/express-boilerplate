@@ -89,6 +89,11 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
+<<<<<<< HEAD
+=======
+router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
+
+>>>>>>> 1d8bf77c4ca1e32dcd7ab0101c4baf6cdf220802
 /* GET user profile page */
 router.get('/users/profile', (req, res) => {
   console.log(req.session)
@@ -108,6 +113,7 @@ router.get('/users/profile', (req, res) => {
     );
 });
 
+<<<<<<< HEAD
 /* Delete a recipe*/
 
 router.post('/users/profile/:id/delete', (req, res) => {
@@ -145,6 +151,36 @@ router.get('/recipes/:id/edit', (req, res) => {
 //       console.log(`Error while updating a single book: ${error}`)
 //     );
 // });
+=======
+// EDIT PROFILE
+router.get('/users/:id/edit', (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then(userToEdit => {
+      res.render('./users/edit', userToEdit);
+    })
+    .catch((err) => {
+      console.log(`Error while editing a profile: ${err}`);
+      next();
+    });
+});
+
+router.post('/users/:id/edit', (req, res, next) => {
+  const { id } = req.params;
+  const { username, email, password } = req.body;
+
+  User.findByIdAndUpdate(
+    id,
+    { username, email, password },
+    { new: true }
+  )
+  .then(() => res.redirect('/users/user-profile'))
+  .catch((err) => {
+    console.log(`Error while editing a celebrity: ${err}`);
+    next();
+  });
+});
+>>>>>>> 1d8bf77c4ca1e32dcd7ab0101c4baf6cdf220802
 
 
 // LOGOUT
