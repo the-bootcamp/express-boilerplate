@@ -10,7 +10,16 @@ const recipeSchema = new Schema(
     image: {type: String, default: ''},
     duration: {type: Number, min: 0},
     creator: String,
-    created: {type: Date, default: Date.now},
+    // date: {
+    //   "type": "string",
+    //   "format": "date"
+    // },
+    created: {
+      "type": "string",
+      "format": "date",
+      "description": "We expect yyyy-MM-dd"
+    },
+    // created: {type: Date, default: Date.now},
     isVegetarian: Boolean,
     isVegan: Boolean,
     description: String,

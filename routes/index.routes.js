@@ -87,6 +87,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
+
 /* GET user profile page */
 router.get('/users/profile', (req, res) => {
   console.log(req.session)
@@ -100,6 +101,35 @@ router.get('/users/profile', (req, res) => {
     .catch(err =>
       console.log(`Err while getting the specific user profile from the  DB: ${err}`)
     );
+});
+
+// EDIT PROFILE
+router.get('/users/:id/edit', (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then(userToEdit => {
+      res.render('./users/edit', userToEdit);
+    })
+    .catch((err) => {
+      console.log(`Error while editing a profile: ${err}`);
+      next();
+    });
+});
+
+router.post('/users/:id/edit', (req, res, next) => {
+  const { id } = req.params;
+  const { username, email, password } = req.body;
+
+  User.findByIdAndUpdate(
+    id,
+    { username, email, password },
+    { new: true }
+  )
+  .then(() => res.redirect('/users/user-profile'))
+  .catch((err) => {
+    console.log(`Error while editing a celebrity: ${err}`);
+    next();
+  });
 });
 
 
