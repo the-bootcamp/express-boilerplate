@@ -7,12 +7,38 @@ const router = express.Router();
 
 /* GET recipes page */
 router.get('/recipes', (req, res) => {
-  Recipe.find()
+  console.log('req', req.query)
+  let { level, dishType, isVegetarian, isVegan } = req.query;
+    console.log('veg ', isVegetarian)
+  if (level || dishType || isVegetarian || isVegan) {
+    const filter = {};
+    if (level) {
+      filter.level = level;
+    }
+    if (dishType) {
+      filter.dishType = dishType;
+    }
+    if (isVegetarian) {
+      filter.isVegetarian = isVegetarian;
+    }
+    if (isVegan) {
+      filter.isVegan = isVegan;
+    }
+
+
+    Recipe.find(filter)
+    .then(filteredRecipesFromDB => {
+      console.log(filteredRecipesFromDB);
+      res.render('./recipes/allRecipes', { recipes: filteredRecipesFromDB, userInSession: req.session.currentUser });
+    })
+    .catch(error => `Error while getting the list of recipes: ${error}`);    
+  } else {
+    Recipe.find()
     .then(recipesFromDB => {
-      console.log(recipesFromDB);
       res.render('./recipes/allRecipes', { recipes: recipesFromDB, userInSession: req.session.currentUser });
     })
     .catch(error => `Error while getting the list of recipes: ${error}`);
+  }
 });
 
 /* GET AND POST new recipe page */
@@ -58,6 +84,20 @@ router.post('/create', (req, res) => {
   }
 });
 
+
+/* Seach for recipes */
+router.get('/recipes/search', (req, res) => {
+  let { term } = req.query;
+  term = new RegExp(term, 'i');
+
+  Recipe.find({ title: term }).exec()
+    .then(recipes => {
+      console.log('recipes => ', recipes);
+      res.render('recipes/allRecipes', { recipes, userInSession: req.session.currentUser })
+    })
+    .catch(err => res.render('error', {error: err}));
+});
+
 /* GET recipe details */
 router.get('/recipes/:recipeId', (req, res) => {
   const { recipeId } = req.params;
@@ -70,5 +110,4 @@ router.get('/recipes/:recipeId', (req, res) => {
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
     );
 });
-
 module.exports = router;
