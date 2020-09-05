@@ -8,8 +8,10 @@
         <div class="row equal">
           {{#each recipesToDisplay}}
             {{> recipeCard }}
+
             <form action="/users/profile/{{_id}}/delete" method="POST">
               <button>Delete</button>
+                <a href="/recipes/{{_id}}/edit">Edit</a>
             </form>
           {{/each}}
         </div>

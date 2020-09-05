@@ -141,7 +141,8 @@ section {
 
 
 /* Recipes Page */
-.featured-recipes {
+.featured-recipes,
+.added-recipes {
   padding: 25px 50px;
   margin-bottom: 50px;
   background-color: rgba(248, 249, 250, 0.9);
@@ -160,6 +161,7 @@ section {
   border: 1px solid #eee;
   border-radius: 0;
   background-color: white;
+  width: 320px;
 }
 
 .card-img-top {
@@ -235,7 +237,6 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 56px;
 }
 
 .recipe-card {
@@ -247,26 +248,61 @@ section {
   opacity: 0.95;
 }
 
-.recipe-card-title {
-  display: flex;
-  justify-content: center;
-  padding: 0 20px;
-  font-weight: 600;
+.recipe-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
   font-size: 32px;
   color: #ffc107;
 }
 
-.recipe-fs {
-  font-size: 16px;
+.recipe-lead {
+  font-size: 24px;
+  font-weight: 500;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  border-top: 1px solid #ddd; 
+}
+
+.recipe-main {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .recipe-info {
-  padding: 50px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .recipe-info > ul{
   list-style: none;
   padding: 10px;
+}
+
+.recipe-directions {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd; 
+}
+
+.recipe-directions--header {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.recipe-directions--step > span {
+  display: flex;
+  align-items: center;
+}
+
+.recipe-directions--step > span i {
+  margin-right: 5px;
+}
+
+.fa-leaf {
+  color: green;
 }
 
 /* User Profile Page */

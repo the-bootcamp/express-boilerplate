@@ -118,6 +118,33 @@ router.post('/users/profile/:id/delete', (req, res) => {
     .catch(error => console.log(`Error while deleting a recipe: ${error}`));
 });
 
+/* Edit a recipe*/
+
+router.get('/recipes/:id/edit', (req, res) => {
+  const { id } = req.params;
+  Recipe.findById(id)
+    .then(recipeToEdit => {
+      res.render('recipe-edit', recipeToEdit);
+    })
+    .catch(error =>
+      console.log(`Error while getting a single recipe for edit: ${error}`)
+    );
+});
+
+// router.post('/books/:id/edit', (req, res) => {
+//   const { id } = req.params;
+//   const { title, description, author, rating } = req.body;
+//
+//   Book.findByIdAndUpdate(
+//     id,
+//     { title, description, author, rating },
+//     { new: true }
+//   )
+//     .then(updatedBook => res.redirect(`/books/${updatedBook._id}`))
+//     .catch(error =>
+//       console.log(`Error while updating a single book: ${error}`)
+//     );
+// });
 
 
 // LOGOUT

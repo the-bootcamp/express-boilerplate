@@ -1,26 +1,10 @@
 {{#if userInSession}}   
   {{>navbar}}
-  <section id="recipe-details">
-    <div class="recipe-card">
-      <h1 class="recipe-card-title">{{title}}</h1>
-      <div class="recipe-info">
-        <h2 class="recipe-fs">Level: {{level}}</h2>
-        <h2 class="recipe-fs">Type: {{dishType}}</h2>
-        <h2 class="recipe-fs">Ingredients:</h2>
-        <ul class="recipe-fs">
-          {{#each ingredients}}
-          <li>{{this}}</li>
-          {{/each}}
-        </ul>
-        <h2 class="recipe-fs">Preparation: {{duration}} minutes</h2>
+  
+    {{#with recipe}}
+      {{>recipeDetails}}
+    {{/with}}
 
-        <h2 class="recipe-fs">isVegetarian: {{isVegetarian}}</h2>
-      </div>
-        <h2 class="recipe-fs">Description</h2>
-        <p class="recipe-fs">{{description}}</p>
-
-        </div>
-  </section>
 {{else}}
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav mr-auto">
