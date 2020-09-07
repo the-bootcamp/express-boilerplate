@@ -148,10 +148,6 @@ section {
   background-color: rgba(248, 249, 250, 0.9);
 }
 
-.card-deck .card {
-  margin: 0;
-}
-
 .recipes--title {
   margin-left: -15px;
 }
@@ -161,7 +157,7 @@ section {
   border: 1px solid #eee;
   border-radius: 0;
   background-color: white;
-  width: 320px;
+  min-width: 320px;
 }
 
 .card-img-top {

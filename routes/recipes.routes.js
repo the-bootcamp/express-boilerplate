@@ -6,7 +6,7 @@ const Recipe = require('../models/Recipe.model');
 const router = express.Router();
 
 /* GET recipes page */
-router.get('/recipes', (req, res) => {
+router.get('/recipes', async (req, res) => {
   console.log('req', req.query)
   let { level, dishType, isVegetarian, isVegan } = req.query;
     console.log('veg ', isVegetarian)

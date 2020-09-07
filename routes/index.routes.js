@@ -89,8 +89,11 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
+<<<<<<< HEAD
 router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
 
+=======
+>>>>>>> test again
 /* GET user profile page */
 router.get('/users/profile', (req, res) => {
   console.log(req.session)
@@ -110,7 +113,47 @@ router.get('/users/profile', (req, res) => {
     );
 });
 
+<<<<<<< HEAD
 
+=======
+/* Delete a recipe*/
+
+router.post('/users/profile/:id/delete', (req, res) => {
+  const { id } = req.params;
+
+  Recipe.findByIdAndDelete(id)
+    .then(() => res.redirect('/users/profile'))
+    .catch(error => console.log(`Error while deleting a recipe: ${error}`));
+});
+
+/* Edit a recipe*/
+
+router.get('/recipes/:id/edit', (req, res) => {
+  const { id } = req.params;
+  Recipe.findById(id)
+    .then(recipeToEdit => {
+      res.render('recipe-edit', recipeToEdit);
+    })
+    .catch(error =>
+      console.log(`Error while getting a single recipe for edit: ${error}`)
+    );
+});
+
+// router.post('/books/:id/edit', (req, res) => {
+//   const { id } = req.params;
+//   const { title, description, author, rating } = req.body;
+//
+//   Book.findByIdAndUpdate(
+//     id,
+//     { title, description, author, rating },
+//     { new: true }
+//   )
+//     .then(updatedBook => res.redirect(`/books/${updatedBook._id}`))
+//     .catch(error =>
+//       console.log(`Error while updating a single book: ${error}`)
+//     );
+// });
+>>>>>>> test again
 
 
 // LOGOUT
