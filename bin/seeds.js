@@ -17,9 +17,10 @@ const recipes = [
     title: '1 Bahn Mi',
     level: 'Easy',
     ingredients: ['milk', 'eggs', 'tomatoes'],
-    dishType: 'breakfast',
+    dishType: 'Breakfast',
     image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20200205-bahn-mi-delish-ehg-9647-jpg-1582818279.jpg?crop=0.676xw:0.507xh;0.308xw,0.293xh&resize=1200:*',
-    duration: 55,
+    preparationTime: 15,
+    cookingTime: 30,
     creator: '5f45667d4aeed029bf5bb3fd',
     created: new Date(),
     isVegetarian: true,
@@ -29,7 +30,7 @@ const recipes = [
   },
   {
 
-    title: 'Chocolate Chip Cookies',
+    title: '2 Chocolate Chip Cookies',
     level: 'Amateur',
     dishType: 'Soup',
     isVegetarian: true,
@@ -40,20 +41,11 @@ const recipes = [
     featuredRecipe: true
   },
   {
-
-    title: 'Asian Glazed Chicken Thighs',
+    title: '3 Asian Glazed Chicken Thighs',
     level: 'Professional',
     dishType: 'Other',
     isVegetarian: false,
     isVegan: false,
-
-    title: '3 Asian Glazed Chicken Thighs',
-    image: 'https://images.media-allrecipes.com/userphotos/720x405/815964.jpg',
-    description: 'Crisp edges, chewy middles, and so, so easy to make. Try this wildly-popular chocolate chip cookie recipe for yourself.',
-    featuredRecipe: true
-  },{
-    title: ' 4 Last Recipe',
-
     image: 'https://images.media-allrecipes.com/userphotos/720x405/815964.jpg',
     description: 'Crisp edges, chewy middles, and so, so easy to make. Try this wildly-popular chocolate chip cookie recipe for yourself.',
     featuredRecipe: true

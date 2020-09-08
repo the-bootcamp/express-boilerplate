@@ -18,6 +18,7 @@ a {
 
 a:hover {
   color: inherit;
+  text-decoration-line: none;
 }
 
 .btn-warning {
@@ -34,6 +35,12 @@ img {
   width: 100%;
   height: auto;
 }
+
+/* input,
+select,
+textarea {
+  padding: 5px;
+} */
 
 .container {
   margin-top: 100px;
@@ -71,18 +78,41 @@ section {
   display: flex;
 }
 
+.dropdown-menu {
+  padding: 20px;
+  min-width: 300px;
+}
+
+.dropdown-menu .form-group {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-menu .form-group.form-group--veg label {
+  width: 100%;
+}
+
+.dropdown-menu .form-group label {
+  width: 50px;
+  margin: 0 10px 0 0;
+}
+
+.dropdown-menu .form-group .form-control {
+  width: 200px;
+}
+
+/* Signup */
+
 .btn-signup,
 .btn-login {
   margin-right: 8px;
 }
 
-/* Signup */
 .login-link {
   color: black;
   text-decoration: underline;
   padding-left: 5px;
 }
-
 
 .auth--card {
   border: none;
@@ -148,20 +178,12 @@ section {
   background-color: rgba(248, 249, 250, 0.9);
 }
 
+
+
+/* Card */
+
 .card-deck .card {
   margin: 0;
-}
-
-.recipes--title {
-  margin-left: -15px;
-}
-
-.recipes-card {
-  height: 100%;
-  border: 1px solid #eee;
-  border-radius: 0;
-  background-color: white;
-  width: 320px;
 }
 
 .card-img-top {
@@ -172,6 +194,29 @@ section {
   border-radius: 0;
 }
 
+.card-title {
+  color: #ffc107;
+  padding-bottom: 5px;
+  border-bottom: 1px solid transparent;
+}
+
+.card-title:hover {
+  border-bottom: 1px solid #ffc107;
+}
+
+.recipes--title {
+  margin-left: -15px;
+  font-weight: 700;
+}
+
+.recipes-card {
+  height: 100%;
+  border: 1px solid #eee;
+  border-radius: 0;
+  background-color: white;
+  min-width: 320px;
+}
+
 .recipes-card--footer {
   padding: 0;
 }
@@ -179,11 +224,14 @@ section {
 .recipes-card--btn {
   width: 100%;
   border-radius: 0;
+  border: none;
 }
 
-.recipes-card--btn:hover {
+.recipes-card--btn:hover,
+.recipes-card--btn:active  {
   border: none;
-  background-color: transparent;
+  background-color: #fff;
+  color: #ffc107;
 }
 
 /* Error Page */
@@ -198,6 +246,8 @@ section {
   margin-top: 20px;
   width: 100%;
 }
+
+/* New Recipe */
   
 .new-recipe--checkbox {
   width: 1.3em;
@@ -292,6 +342,8 @@ section {
   border-top: 1px solid #ddd; 
   border-bottom: 1px solid #ddd; 
 }
+
+
 
 .recipe-directions--header,
 .recipe-ingredients--header {

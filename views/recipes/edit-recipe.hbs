@@ -1,0 +1,125 @@
+
+{{#if userInSession}}
+ {{>navbar}}
+  <section id="edit-recipe">
+    <div class="recipe-card">
+      <div class="recipe-card-title">Change the recipe!</div>
+        <div>
+          {{#each errors}}
+            <div class="error">
+              <p>{{text}}</p>
+            </div>
+          {{/each}}
+          <form id="add-recipe-form" action="/create" method="POST">
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" id="title" name="title" value={{title}}>
+            </div>
+            <div class="d-flex">
+              <div class="mr-5">
+                <label for="level">Level:</label>
+                <div>
+                  <select id="level" name="level">
+                    <option value="Easy">Easy</option>
+                    <option value="Amateur">Amateur</option>
+                    <option value="Professional">Professional</option>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dishType">Dish Type:</label>
+                  <div>
+                    <select id="dishType" name="dishType">
+                      <option value="Breakfast">Breakfast</option>
+                      <option value="Starter">Starter</option>
+                      <option value="Main course">Main course</option>
+                      <option value="Soup">Soup</option>
+                      <option value="Snack">Snack</option>
+                      <option value="Shake">Shake</option>
+                      <option value="Dessert">Dessert</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+            <div id="ingredients-container" class="form-group">
+              <label for="ingredients">Ingredients:</label>
+              <textarea id="ingredients" name="ingredients" rows="2" cols="35">{{ingredients}}</textarea>
+            </div>
+            <div>
+              <label>Time to prepare:</label>
+              <input class="new-recipe--time" type="number" class="form-control" id="duration" name="duration" value={{duration}}> minutes
+            </div>
+            <div class="form-group d-flex">
+              <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian" name="isVegetarian" value="true">
+              <label class="mr-4" for="isVegetarian">Vegeterian dish</label><br>
+              <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegan" name="isVegan" value="true">
+              <label for="isVegan">Vegan dish</label><br>
+            </div>
+            <div class="form-group">
+              <label for="description">Procedure:</label>
+              <textarea id="description" name="description" rows="4" cols="35"></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning new-recipe--btn">Add</button>
+          </form>
+        </div>
+    </div>
+  </section>
+{{else}}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <ul class="navbar-nav mr-auto">
+    <a class="navbar-brand" href="/recipes">Logo</a>
+    <li class="nav-item active">
+      <a class="nav-link disabled" href="/">Foodle</a>
+    </li>
+  </ul>
+</nav>
+
+<section id="error-container">
+  <div class="alert text-center auth--card " role="alert">
+    <h1>Error!</h1>
+    <h2>Still no logged in user, sorry!</h2>
+    <a href="/login"><button type="button" class="btn btn-outline-danger btn-lg">Log in</button></a>
+    <a href="/signup"><button type="button" class="btn btn-outline-danger btn-lg">Sign up</button></a>
+  </div>
+</section>
+{{/if}}
+
+<script>
+  const formContainer = document.getElementById('add-recipe-form');
+  const ingredientContainer = document.getElementById('ingredients-container');
+  const ingredientInput = document.getElementById('ingredients');
+  let ingredients = [];
+
+  const createBadge = (ingredient) => {
+    const badge = document.createElement('span');
+    badge.classList.add("badge", "badge-pill", "badge-warning");
+    badge.innerHTML = ingredient;
+
+    if (ingredient !== '') {
+      ingredients.push(ingredient);
+    }
+
+    ingredientInput.value = '';
+    ingredientContainer.appendChild(badge);
+  }
+
+  window.addEventListener('load', () => {
+    const oldIngredients = ingredientInput.value.split(',');
+    oldIngredients.forEach((ingredient) => createBadge(ingredient));
+  })
+
+  ingredientInput.addEventListener('keydown', (event) => {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+
+        const ingredient = ingredientInput.value;
+        createBadge(ingredient);
+    }
+  })
+
+  formContainer.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formContainer.ingredients.value = ingredients;
+      formContainer.submit();
+  })
+</script>
