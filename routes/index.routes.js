@@ -90,10 +90,13 @@ router.post('/login', (req, res, next) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
 
 =======
 >>>>>>> test again
+=======
+>>>>>>> style-updates
 /* GET user profile page */
 router.get('/users/profile', (req, res) => {
   console.log(req.session)
@@ -114,8 +117,11 @@ router.get('/users/profile', (req, res) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> style-updates
 /* Delete a recipe*/
 
 router.post('/users/profile/:id/delete', (req, res) => {
@@ -128,11 +134,11 @@ router.post('/users/profile/:id/delete', (req, res) => {
 
 /* Edit a recipe*/
 
-router.get('/recipes/:id/edit', (req, res) => {
+router.get('/users/profile/:id', (req, res) => {
   const { id } = req.params;
   Recipe.findById(id)
     .then(recipeToEdit => {
-      res.render('recipe-edit', recipeToEdit);
+      res.render('recipes/:id/edit', recipeToEdit);
     })
     .catch(error =>
       console.log(`Error while getting a single recipe for edit: ${error}`)
@@ -153,7 +159,10 @@ router.get('/recipes/:id/edit', (req, res) => {
 //       console.log(`Error while updating a single book: ${error}`)
 //     );
 // });
+<<<<<<< HEAD
 >>>>>>> test again
+=======
+>>>>>>> style-updates
 
 
 // LOGOUT
