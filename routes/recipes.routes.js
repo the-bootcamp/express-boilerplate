@@ -123,4 +123,34 @@ router.get('/recipes/:recipeId', (req, res) => {
     );
 });
 
+
+/* Edit recipe*/
+router.get('/recipes/:recipeId/edit', (req, res) => {
+  const { recipeId } = req.params;
+
+  Recipe.findById(recipeId)
+    .then(recipeToEdit => {
+      res.render('recipes/edit-recipe', { recipe: recipeToEdit, userInSession: req.session.currentUser });
+    })
+    .catch(err =>
+      console.log(`Err while getting the specific recipe from the  DB: ${err}`)
+    );
+});
+
+
+router.post('/recipes/:recipeId/edit', (req, res) => {
+  const { recipeId } = req.params;
+  const {  title, level, ingredients, dishType, duration, isVegetarian = false, isVegan = false, description } = req.body;
+
+  Recipe.findByIdAndUpdate(
+    recipeId,
+    { title, level, ingredients, dishType, duration, isVegetarian, isVegan, description },
+    { new: true }
+  )
+    .then(updatedRecipe => res.redirect(`/recipes/${updatedRecipe._id}`))
+    .catch(error =>
+      console.log(`Error while updating a single recipe: ${error}`)
+    );
+});
+
 module.exports = router;
