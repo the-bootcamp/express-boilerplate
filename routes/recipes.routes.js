@@ -49,7 +49,7 @@ router.post('/create', (req, res) => {
   let { title, level, ingredients, dishType, image, preparationTime, cookingTime, isVegetarian = false, isVegan = false, description } = req.body;
   const creator = req.session.currentUser._id;
   const errors = [];
-console.log("my ingridients", ingredients)
+  console.log("my ingridients", ingredients)
   ingredients = ingredients;
   // duration = Number(duration);
 
@@ -133,18 +133,17 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
   const { recipeId } = req.params;
 
   Recipe.findById(recipeId)
-    .then(recipeToEdit => {
-      res.render('recipes/edit-recipe', { recipe: recipeToEdit, userInSession: req.session.currentUser });
+    .then(recipe => {
+      res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser });
     })
     .catch(err =>
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
     );
 });
 
-
 router.post('/recipes/:recipeId/edit', (req, res) => {
   const { recipeId } = req.params;
-  const {  title, level, ingredients, dishType, image, preparationTime, cookingTime, TimeisVegetarian = false, isVegan = false, description } = req.body;
+  const {  title, level, ingredients, dishType, image, preparationTime, cookingTime, isVegetarian = false, isVegan = false, description } = req.body;
 
   Recipe.findByIdAndUpdate(
     recipeId,

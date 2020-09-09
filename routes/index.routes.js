@@ -109,26 +109,12 @@ router.get('/users/profile', (req, res) => {
 });
 
 /* Delete a recipe*/
-
 router.post('/users/profile/:id/delete', (req, res) => {
   const { id } = req.params;
 
   Recipe.findByIdAndDelete(id)
     .then(() => res.redirect('/users/profile'))
     .catch(error => console.log(`Error while deleting a recipe: ${error}`));
-});
-
-/* Edit a recipe*/
-
-router.get('/recipes/:id/edit', (req, res) => {
-  const { id } = req.params;
-  Recipe.findById(id)
-    .then(recipe => {
-      res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser });
-    })
-    .catch(error =>
-      console.log(`Error while getting a single recipe for edit: ${error}`)
-    );
 });
 
 // LOGOUT
