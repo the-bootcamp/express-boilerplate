@@ -1,21 +1,21 @@
-<section id="recipe-details" style="background-image: url({{image}})">
+<section id="recipe-details" style="background-image: url({{recipe.image}})">
   <div class="recipe-card">
-    <h1 class="recipe-title">{{title}}</h1>
-    <p class="recipe-lead">{{description}}</p>
+    <h1 class="recipe-title">{{recipe.title}}</h1>
+    <p class="recipe-lead">{{recipe.description}}</p>
     <div class="recipe-main">
       <div class="recipe-ingredients">
         <h5 class="recipe-ingredients--header">Ingredients</h5>
         <ul class="recipe-ingredients--list">
-          {{#each ingredients}}
+          {{#each recipe.ingredients}}
             <li class="recipe-ingredients--item">{{this}}</li>
           {{/each}}
         </ul>
       </div>
       <div class="recipe-info">
-        <h6><strong>Level:</strong> {{level}}</h6>
-        <h6><strong>Type:</strong> {{dishType}}</h6>
-        <h6><strong>Duration:</strong> {{duration}} minutes</h6>
-        {{#if isVegetarian}}
+        <h6><strong>Level:</strong> {{recipe.level}}</h6>
+        <h6><strong>Type:</strong> {{recipe.dishType}}</h6>
+        <h6><strong>Duration:</strong> {{recipe.duration}} minutes</h6>
+        {{#if recipe.isVegetarian}}
           <h6><strong>Vegetarian:</strong> <i class="fas fa-leaf"></i></h6>
           
         {{/if}}
@@ -33,6 +33,6 @@
         <p>Preheat the oven's broiler. Place the pork chops on a broiling pan and set under the broiler. Cook for about 5 minutes, turning once, or until browned on each side.</p>
       </div>
     </div>
-    <p class="recipe-creator">Created by {{creator}} at {{created}}</p>
+    <p class="recipe-creator">Created by {{username}} at {{format-date recipe.created}}</p>
   </div>
 </section>

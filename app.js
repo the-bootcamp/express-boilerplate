@@ -28,6 +28,13 @@ app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
+hbs.registerHelper("format-date", (dateString) => {
+	const date = new Date(dateString);
+	const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',	'November', 'December'];
+
+	return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+});
+
 
 // const index = require('./routes/index');
 // app.use('/', index);

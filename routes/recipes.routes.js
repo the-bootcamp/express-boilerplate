@@ -49,7 +49,7 @@ router.post('/create', (req, res) => {
   let { title, level, ingredients, dishType, image, preparationTime, cookingTime, isVegetarian = false, isVegan = false, description } = req.body;
   const creator = req.session.currentUser._id;
   const errors = [];
-  console.log("my ingridients", ingredients)
+
   ingredients = ingredients;
   // duration = Number(duration);
 
@@ -108,7 +108,6 @@ router.get('/recipes/search', (req, res) => {
 
   Recipe.find({ title: term }).exec()
     .then(recipes => {
-      console.log('recipes => ', recipes);
       res.render('recipes/allRecipes', { recipes, userInSession: req.session.currentUser })
     })
     .catch(err => res.render('error', {error: err}));
@@ -119,14 +118,13 @@ router.get('/recipes/:recipeId', (req, res) => {
   const { recipeId } = req.params;
 
   Recipe.findById(recipeId)
-    .then(recipeToDisplay => {
-      res.render('recipes/recipe-details', { recipe: recipeToDisplay, userInSession: req.session.currentUser });
+    .then(recipe => {
+      res.render('recipes/recipe-details', { recipe, userInSession: req.session.currentUser });
     })
     .catch(err =>
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
     );
 });
-
 
 /* Edit recipe*/
 router.get('/recipes/:recipeId/edit', (req, res) => {

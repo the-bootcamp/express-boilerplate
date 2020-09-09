@@ -1,9 +1,7 @@
 {{#if userInSession}}   
   {{>navbar}}
   
-    {{#with recipe}}
-      {{>recipeDetails}}
-    {{/with}}
+  {{>recipeDetails recipe=recipe username=userInSession.username}}
 
 {{else}}
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
