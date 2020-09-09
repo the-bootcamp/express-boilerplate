@@ -123,8 +123,8 @@ router.post('/users/profile/:id/delete', (req, res) => {
 router.get('/recipes/:id/edit', (req, res) => {
   const { id } = req.params;
   Recipe.findById(id)
-    .then(recipeToEdit => {
-      res.render('recipe-edit', recipeToEdit);
+    .then(recipe => {
+      res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser });
     })
     .catch(error =>
       console.log(`Error while getting a single recipe for edit: ${error}`)
