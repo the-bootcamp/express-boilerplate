@@ -1,8 +1,8 @@
 
 {{#if userInSession}}
- {{>navbar}}
+  {{>navbar}}
   <section id="add-new-recipe">
-    <d class="recipe-card">
+    <div class="recipe-card">
       <h1 class="recipe-card-title">Add a new recipe!</h1>
       {{#each errors}}
         <div class="error">
@@ -15,26 +15,28 @@
         {{!-- Row 1 --}}
         <div class="form-row">
           {{!-- Title --}}
-          <div class="form-group col-md-6">
+          <div class="form-group col-sm-6">
             <label for="title">Title:</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Enter recipe title" required value={{title}}>
           </div>
           {{!-- Level --}}
-          <div class="form-group col-md-3">
+          <div class="form-group col-sm-3">
             <label for="level">Level:</label>
-            <select class="form-control" id="level" name="level" >
+            <select class="form-control" id="level" name="level">
+              <option selected>Choose...</option>
               <option value="Easy">Easy</option>
               <option value="Amateur">Amateur</option>
               <option value="Professional">Professional</option>
             </select>
           </div>
           {{!-- Dish Type --}}
-          <div class="form-group col-md-3">
+          <div class="form-group col-sm-3">
             <label for="dishType">Dish Type:</label>
-            <select class="form-control" id="dishType" name="dishType" >
+            <select class="form-control" id="dishType" name="dishType">
+              <option selected>Choose...</option>
               <option value="Breakfast">Breakfast</option>
               <option value="Starter">Starter</option>
-              <option value="Main course">Main course</option>
+              <option value="Main">Main Course</option>
               <option value="Soup">Soup</option>
               <option value="Snack">Snack</option>
               <option value="Shake">Shake</option>
@@ -47,40 +49,36 @@
         {{!-- Row 2 --}}
         <div class="form-row">
           {{!-- Ingredients --}}
-          <div class="form-group">
+          <div class="form-group col-sm-12" id="ingredients-container">
             <label for="ingredients">Ingredients:</label>
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Enter an ingredient" value={{ingredients}}>
+              <input type="text" id="ingredients" class="form-control" name="ingredients" placeholder="Enter an ingredient" value={{ingredients}}>
               <div class="input-group-append">
-                <button class="btn btn-warning new-recipe--btn" type="button" id="button-addon2">Add Ingredient</button>
+                <button class="btn btn-warning" type="button" id="ingredients" name="ingredients">Add Ingredient</button>
               </div>
             </div>
           </div>
         </div>
-
-        {{!-- <div class="input-group">
-          <input type="text" class="form-control" placeholder="Enter an ingredient" value={{ingredients}}>
-          <div class="input-group-append">
-            <button class="btn btn-warning new-recipe--btn" type="button" id="button-addon2">Add Ingredient</button>
-          </div>
-        </div> --}}
         
         {{!-- Row 3 --}}
         <div class="form-row">
-          <div class="form-group col-md-6">
+          {{!-- Preparation Time --}}
+          <div class="form-group col-sm-6">
             <label for="preparation">Preparation Time:</label>
-            <input type="number" class="form-control" id="preparation" name="preparation" value={{preparationTime}}>
+            <input type="number" class="form-control" id="preparation" name="preparation" placeholder="Enter in minutes" required value={{preparationTime}}>
           </div>
-          <div class="form-group col-md-6">
+          {{!-- Cooking Time --}}
+          <div class="form-group col-sm-6">
             <label for="cooking">Cooking Time:</label>
-            <input type="number" class="form-control" id="cooking" name="cooking" value={{cookingTime}}>
+            <input type="number" class="form-control" id="cooking" name="cooking" placeholder="Enter in minutes" required value={{cookingTime}}>
           </div>
         </div>
         
         
         {{!-- Row 4 --}}
         <div class="form-row">
-          <div class="form-group d-flex">
+          {{!-- Vegetararian / Vegan --}}
+          <div class="form-group col-sm-12 d-flex">
             <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian" name="isVegetarian" value="true">
             <label class="mr-4" for="isVegetarian">Vegeterian dish</label>
             <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegan" name="isVegan" value="true">
@@ -88,13 +86,26 @@
           </div>
         </div>
         
-        
-        
-        <div class="form-group">
-          <label for="description">Procedure:</label>
-          <textarea id="description" name="description" rows="4" cols="35"></textarea>
+        {{!-- Row 5 --}}
+        <div class="form-row">
+          {{!-- Image --}}
+          <div class="form-group col-sm-12">
+            <label for="image">Recipe Image:</label>
+            <input type="text" class="form-control" id="image" name="image" placeholder="Enter a valid url" required value={{image}}>
+          </div>
         </div>
-        <button type="submit" class="btn btn-warning new-recipe--btn">Add Recipe</button>
+        
+        {{!-- Row 6 --}}
+        <div class="form-row">
+          {{!-- Instructions --}}
+          <div class="form-group col-sm-12">
+            <label for="description">Instructions:</label>
+            <textarea class="form-control" id="description" name="description" rows="4" cols="35" placeholder="Enter step-by-step instuctions how to make the recipe" required></textarea>
+          </div>
+        </div>
+        
+        {{!-- Submit Recipe --}}
+        <button type="submit" class="btn btn-warning new-recipe--btn btn-block btn-lg">Add Recipe</button>
       </form>
     </div>
   </section>
@@ -123,39 +134,33 @@
 <script>
   const formContainer = document.getElementById('add-recipe-form');
   const ingredientContainer = document.getElementById('ingredients-container');
-  const ingredientInput = document.getElementById('ingredients');
+  const ingredientInput = document.getElementById('#ingredients');
   let ingredients = [];
-
   const createBadge = (ingredient) => {
     const badge = document.createElement('span');
     badge.classList.add("badge", "badge-pill", "badge-warning");
     badge.innerHTML = ingredient;
-
     if (ingredient !== '') {
       ingredients.push(ingredient);
+      console.log(ingredients);
     }
-
     ingredientInput.value = '';
     ingredientContainer.appendChild(badge);
   }
-
   window.addEventListener('load', () => {
     const oldIngredients = ingredientInput.value.split(',');
     oldIngredients.forEach((ingredient) => createBadge(ingredient));
   })
-
   ingredientInput.addEventListener('keydown', (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
-
         const ingredient = ingredientInput.value;
         createBadge(ingredient);
     }
   })
-
   formContainer.addEventListener('submit', (e) => {
       e.preventDefault();
-      formContainer.ingredients.value = ingredients;
+      ingredientInput.value = ingredients;
       formContainer.submit();
   })
 </script>

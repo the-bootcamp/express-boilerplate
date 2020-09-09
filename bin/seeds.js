@@ -9,7 +9,7 @@ require('../configs/db.config');
 // List of recipes
 const recipes = [
   {
-    title: 'Bahn Mgit sti',
+    title: 'Bahn Mi',
     level: 'Easy',
     ingredients: ['milk', 'eggs', 'tomatoes'],
     dishType: 'Breakfast',
@@ -30,18 +30,17 @@ const recipes = [
   },
   {
 
-    title: '2 Chocolate Chip Cookies',
+    title: 'Chocolate Chip Cookies',
     level: 'Amateur',
     dishType: 'Soup',
     isVegetarian: true,
     isVegan: true,
-    title: '2 Chocolate Chip Cookies',
     image: 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F4398987.jpg&w=596&h=399.32000000000005&c=sc&poi=face&q=85',
     description: 'Crisp edges, chewy middles, and so, so easy to make. Try this wildly-popular chocolate chip cookie recipe for yourself.',
     featuredRecipe: true
   },
   {
-    title: '3 Asian Glazed Chicken Thighs',
+    title: 'Asian Glazed Chicken Thighs',
     level: 'Professional',
     dishType: 'Other',
     isVegetarian: false,

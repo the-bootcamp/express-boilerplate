@@ -36,23 +36,18 @@ img {
   height: auto;
 }
 
-/* input,
-select,
-textarea {
-  padding: 5px;
-} */
-
 .container {
   margin-top: 100px;
 }
 
 section {
   min-height: 100vh;
-  background: url('../images/foodle-landing-page.jpg') no-repeat center center fixed;
+  background: url('../images/foodle-landing-page.jpg') no-repeat center center fixed rgba(114, 114, 114, 0.5);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+  background-blend-mode: multiply;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -106,12 +101,18 @@ section {
 .btn-signup,
 .btn-login {
   margin-right: 8px;
+  text-align: center;
 }
 
 .login-link {
-  color: black;
-  text-decoration: underline;
-  padding-left: 5px;
+  font-weight: 700;
+  margin-left: 5px;
+  padding-bottom: 1px;
+}
+
+.login-link:hover {
+  color: #ffc107;
+  text-decoration-line: underline;
 }
 
 .auth--card {
@@ -128,19 +129,12 @@ section {
   display: flex;
   justify-content: center;
   padding: 0 20px 20px 20px;
-  font-weight: 600;
-  font-size: 24px;
+  font-weight: 700;
   color: #ffc107;
 }
 
-.auth--btn {
-  display: flex;
-  margin: auto;
-  color: #fff;
-}
-
 .logo-link-container {
-  padding: 25px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -173,22 +167,31 @@ section {
 /* Recipes Page */
 .featured-recipes,
 .added-recipes {
-  padding: 25px 50px;
+  padding: 25px 25px;
   margin-bottom: 50px;
   background-color: rgba(248, 249, 250, 0.9);
 }
 
+/* Carousel */
+.carousel-item--box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+}
 
+.carousel-img {
+  height: 500px;
+}
 
 /* Card */
 
-.card-deck .card {
-  margin: 0;
+.card-deck {
+  margin-top: 40px;
 }
 
 .card-img-top {
   padding: 20px 20px 0 20px;
-  width: 100%;
+  width: auto;
   height: 250px;
   object-fit: cover;
   border-radius: 0;
@@ -205,8 +208,11 @@ section {
 }
 
 .recipes--title {
-  margin-left: -15px;
+  color: #ffc107;
   font-weight: 700;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ffc107;
 }
 
 .recipes-card {
@@ -248,7 +254,7 @@ section {
 }
 
 /* New Recipe */
-  
+
 .new-recipe--checkbox {
   width: 1.3em;
   height: 1.3em;
@@ -266,14 +272,21 @@ section {
 }
 
 .new-recipe--btn {
-  display: flex;
-  margin: auto;
-  color: #fff;
+  text-align: center;
   }
 
 .new-recipe--time {
   width: 70px;
   height: 30px;
+}
+
+#ingredients-container {
+  width: 100%;
+}
+
+.badge {
+  margin: 10px 5px;
+  padding: 5px 10px;
 }
 
 /* Recipe details */

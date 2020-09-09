@@ -46,12 +46,12 @@ router.get('/recipes', async (req, res) => {
 router.get('/create', (req, res, next) => res.render('recipes/add-new-recipe', { userInSession: req.session.currentUser }));
 
 router.post('/create', (req, res) => {
-  let { title, level, ingredients, dishType, duration, isVegetarian = false, isVegan = false, description } = req.body;
+  let { title, level, ingredients, dishType, image, preparationTime, cookingTime, isVegetarian = false, isVegan = false, description } = req.body;
   const creator = req.session.currentUser._id;
   const errors = [];
-
-  ingredients = ingredients.split(',');
-  duration = Number(duration);
+console.log("my ingridients", ingredients)
+  ingredients = ingredients;
+  // duration = Number(duration);
 
   if(!title) {
     errors.push({ text: 'Please add a title' });
@@ -59,9 +59,10 @@ router.post('/create', (req, res) => {
   if(!ingredients) {
     errors.push({ text: 'Please add some ingredients' });
   }
-  if(!duration) {
-    errors.push({ text: 'Please add the time' });
-  }
+  // if(!duration) {
+  //   errors.push({ text: 'Please add the time' });
+  //   return;
+  // }
   if(!description) {
     errors.push({ text: 'Please add a description' });
   }
@@ -70,11 +71,12 @@ router.post('/create', (req, res) => {
     res.render('recipes/add-new-recipe', {
       errors,
       title,
-      ingredients,
-      duration,
-      description,
       level,
       dishType,
+      image,
+      preparationTime,
+      cookingTime,      
+      ingredients,
       isVegan,
       isVegetarian,
       userInSession: req.session.currentUser
@@ -84,8 +86,10 @@ router.post('/create', (req, res) => {
       title,
       level,
       dishType,
+      image,
+      preparationTime,
+      cookingTime,      
       ingredients,
-      duration,
       isVegetarian,
       isVegan,
       description,
@@ -140,11 +144,11 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
 
 router.post('/recipes/:recipeId/edit', (req, res) => {
   const { recipeId } = req.params;
-  const {  title, level, ingredients, dishType, duration, isVegetarian = false, isVegan = false, description } = req.body;
+  const {  title, level, ingredients, dishType, image, preparationTime, cookingTime, TimeisVegetarian = false, isVegan = false, description } = req.body;
 
   Recipe.findByIdAndUpdate(
     recipeId,
-    { title, level, ingredients, dishType, duration, isVegetarian, isVegan, description },
+    { title, level, ingredients, dishType, image, preparationTime, cookingTime,  isVegetarian, isVegan, description },
     { new: true }
   )
     .then(updatedRecipe => res.redirect(`/recipes/${updatedRecipe._id}`))

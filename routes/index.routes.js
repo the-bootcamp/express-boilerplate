@@ -7,7 +7,7 @@ const User = require('../models/User.model');
 const Recipe = require('../models/Recipe.model');
 
 /* GET home page */
-router.get('/', (req, res, next) => res.render('index'));
+router.get('/', (req, res, next) => res.render('index', { title: 'Foodle' }));
 
 /* GET signup page */
 router.get('/signup', (req, res, next) => res.render('auth/signup'));
@@ -89,14 +89,6 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-router.get('/user-profile', (req, res, next) => res.render('user/user-profile', { userInSession: req.session.currentUser }));
-
-=======
->>>>>>> test again
-=======
->>>>>>> style-updates
 /* GET user profile page */
 router.get('/users/profile', (req, res) => {
   console.log(req.session)
@@ -116,12 +108,6 @@ router.get('/users/profile', (req, res) => {
     );
 });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> style-updates
 /* Delete a recipe*/
 
 router.post('/users/profile/:id/delete', (req, res) => {
@@ -134,36 +120,16 @@ router.post('/users/profile/:id/delete', (req, res) => {
 
 /* Edit a recipe*/
 
-router.get('/users/profile/:id', (req, res) => {
+router.get('/recipes/:id/edit', (req, res) => {
   const { id } = req.params;
   Recipe.findById(id)
     .then(recipeToEdit => {
-      res.render('recipes/:id/edit', recipeToEdit);
+      res.render('recipe-edit', recipeToEdit);
     })
     .catch(error =>
       console.log(`Error while getting a single recipe for edit: ${error}`)
     );
 });
-
-// router.post('/books/:id/edit', (req, res) => {
-//   const { id } = req.params;
-//   const { title, description, author, rating } = req.body;
-//
-//   Book.findByIdAndUpdate(
-//     id,
-//     { title, description, author, rating },
-//     { new: true }
-//   )
-//     .then(updatedBook => res.redirect(`/books/${updatedBook._id}`))
-//     .catch(error =>
-//       console.log(`Error while updating a single book: ${error}`)
-//     );
-// });
-<<<<<<< HEAD
->>>>>>> test again
-=======
->>>>>>> style-updates
-
 
 // LOGOUT
 router.post('/logout', (req, res) => {

@@ -7,7 +7,7 @@
       </li>
   </nav>
   <div class="auth--card" style="width: 18rem;">
-    <div class="auth--card-title">Sign up!</div>
+    <h1 class="auth--card-title">Sign up!</h1>
     <div>
       {{#if errorMessage}}
         <div class="error">
@@ -27,12 +27,12 @@
           <label for="password">Password</label>
           <input type="password" class="form-control" name="password" id="signup-password">
         </div>
-        <button type="submit" class="btn btn-warning auth--btn">Sign up</button>
+        <button type="submit" class="btn btn-warning btn-login btn-block btn-lg text-center">Sign Up</button>
       </form>
     </div>
     <div>
       <span class="logo-link-container">
-        Already a user? Log <a class="login-link" href="/login">here</a>
+        Already a user? Log in <a class="login-link" href="/login">here</a>
       </span>
     </div>
   </div>
