@@ -54,7 +54,7 @@
             <div class="input-group">
               <input type="text" id="ingredients" class="form-control" name="ingredients" placeholder="Enter an ingredient" value={{ingredients}}>
               <div class="input-group-append">
-                <button class="btn btn-warning" type="button" id="ingredients" name="ingredients">Add Ingredient</button>
+                <button class="btn btn-warning" type="submit" name="ingredients">Add Ingredient</button>
               </div>
             </div>
           </div>
@@ -134,33 +134,50 @@
 <script>
   const formContainer = document.getElementById('add-recipe-form');
   const ingredientContainer = document.getElementById('ingredients-container');
-  const ingredientInput = document.getElementById('#ingredients');
+  const ingredientInput = document.getElementById('ingredients');
+  
+  
   let ingredients = [];
+
   const createBadge = (ingredient) => {
     const badge = document.createElement('span');
     badge.classList.add("badge", "badge-pill", "badge-warning");
-    badge.innerHTML = ingredient;
+    badge.innerHTML +=
+    `
+    ${ingredient} 
+    <i class="fas fa-times" onclick="deleteBadge(event)"></i>
+    `
+
     if (ingredient !== '') {
       ingredients.push(ingredient);
-      console.log(ingredients);
     }
+
     ingredientInput.value = '';
     ingredientContainer.appendChild(badge);
   }
-  window.addEventListener('load', () => {
+
+  {{!-- window.addEventListener('load', () => {
     const oldIngredients = ingredientInput.value.split(',');
     oldIngredients.forEach((ingredient) => createBadge(ingredient));
-  })
+  }) --}}
+
   ingredientInput.addEventListener('keydown', (event) => {
     if (event.keyCode === 13) {
         event.preventDefault();
+
         const ingredient = ingredientInput.value;
         createBadge(ingredient);
     }
   })
+
   formContainer.addEventListener('submit', (e) => {
       e.preventDefault();
-      ingredientInput.value = ingredients;
+      formContainer.ingredients.value = ingredients;
       formContainer.submit();
   })
+
+  function deleteBadge(event){
+    event.path[1].remove();
+  }
+  
 </script>

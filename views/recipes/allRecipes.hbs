@@ -2,35 +2,44 @@
 <section id="recipes">
   {{>navbar}}
   <div class="container">
-
-    
-
-
     {{!-- Featured Recipe Box --}}
-    
     <div class="featured-recipes">
-      
-      <h1 class="recipes--title text-center">Features Recipes</h1>        
+      <h1 class="recipes--title text-center">Featured Recipes</h1>        
             
       {{!-- Featured Recipes Slider --}}
-      <div class="container-fluid" id="anchorJump">
+      <div class="container" id="anchorJump">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             {{#each recipes}}
               {{#if this.featuredRecipe}}
               <div class="carousel-item">
-                <div class="carousel-item--box">
-                  <div class="item-info">
-                    <div class="carousel-caption">
-                      <a href="/recipes/{{_id}}">
-                        <h3 class="h3-responsive">{{title}}</h3>
-                      </a>
-                      <p>{{description}}</p>
+                <div class="container-fluid">
+                  <a href="/recipes/{{_id}}">
+                    <h2 class="featured-header text-center">{{title}}</h2>
+                  </a>
+                  <div class="row">
+                    <div class="col-md-5 featured-info">
+                        <div class="featured-description">
+                          <p class="featured-lead">{{description}}</p>
+                        </div>
+                        <div class="featured-info">
+                          <h6><strong>Level:</strong> {{level}}</h6>
+                          <h6><strong>Type:</strong> {{dishType}}</h6>
+                          <h6><strong>Preparation Time:</strong> {{preparationTime}} minutes</h6>
+                          <h6><strong>Cooking Time:</strong> {{cookingTime}} minutes</h6>
+                          {{#if isVegetarian}}
+                            <h6><strong>Vegetarian:</strong> <i class="fas fa-leaf"></i></h6>
+                          {{/if}}
+                        </div>
+                    
+                    </div>
+                    <div class="col-lg-7">
+                      <div class="featured-img">
+                        <img class="d-block w-100 carousel-img" src="{{image}}" alt="First slide">   
+                      </div>
                     </div>
                   </div>
-                  <div class="item-img">
-                    <img class="d-block w-100 carousel-img" src="{{image}}" alt="First slide">  
-                  </div>
+
                 </div>
               </div>
               {{/if}}
@@ -46,18 +55,6 @@
           </a>
         </div>
       </div>
-      
-
-      
-      <div class="card-deck">
-        <div class="row equal">
-          {{#each recipes}}
-            {{#if this.featuredRecipe}}
-              {{> recipeCard }}
-            {{/if}}
-          {{/each}}
-        </div>
-      </div>
     </div>
 
     {{!-- Added Recipe Box --}}
@@ -70,8 +67,7 @@
           {{/each}}
         </div>
       </div>
-    </div>
-    
+    </div>  
   </div>
 </section>
 

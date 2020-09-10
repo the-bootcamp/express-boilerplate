@@ -1,5 +1,117 @@
-
 {{#if userInSession}}
+  {{>navbar}}
+  <section id="add-new-recipe">
+    <div class="recipe-card">
+      <h1 class="recipe-card-title">Edit {{recipe.title}} Recipe</h1>
+      {{#each errors}}
+        <div class="error">
+          <p>{{text}}</p>
+        </div>
+      {{/each}}
+
+      {{!-- Form  --}}
+      <form id="add-recipe-form" action="/create" method="POST">
+        {{!-- Row 1 --}}
+        <div class="form-row">
+          {{!-- Title --}}
+          <div class="form-group col-sm-6">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter recipe title" value={{recipe.title}}>
+          </div>
+          {{!-- Level --}}
+          <div class="form-group col-sm-3">
+            <label for="level">Level:</label>
+            <select class="form-control" id="level" name="level">
+              <option selected>Choose...</option>
+              <option value="Easy">Easy</option>
+              <option value="Amateur">Amateur</option>
+              <option value="Professional">Professional</option>
+            </select>
+          </div>
+          {{!-- Dish Type --}}
+          <div class="form-group col-sm-3">
+            <label for="dishType">Dish Type:</label>
+            <select class="form-control" id="dishType" name="dishType">
+              <option selected>Choose...</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Starter">Starter</option>
+              <option value="Main">Main Course</option>
+              <option value="Soup">Soup</option>
+              <option value="Snack">Snack</option>
+              <option value="Shake">Shake</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        {{!-- Row 2 --}}
+        <div class="form-row">
+          {{!-- Ingredients --}}
+          <div class="form-group col-sm-12" id="ingredients-container">
+            <label for="ingredients">Ingredients:</label>
+            <div class="input-group">
+              <input type="text" id="ingredients" class="form-control" name="ingredients" placeholder="Enter an ingredient" value={{recipe.ingredients}}>
+              <div class="input-group-append">
+                <button class="btn btn-warning" type="submit" name="ingredients">Add Ingredient</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {{!-- Row 3 --}}
+        <div class="form-row">
+          {{!-- Preparation Time --}}
+          <div class="form-group col-sm-6">
+            <label for="preparation">Preparation Time:</label>
+            <input type="number" class="form-control" id="preparation" name="preparation" placeholder="Enter in minutes" value={{recipe.preparationTime}}>
+          </div>
+          {{!-- Cooking Time --}}
+          <div class="form-group col-sm-6">
+            <label for="cooking">Cooking Time:</label>
+            <input type="number" class="form-control" id="cooking" name="cooking" placeholder="Enter in minutes" value={{recipe.cookingTime}}>
+          </div>
+        </div>
+        
+        
+        {{!-- Row 4 --}}
+        <div class="form-row">
+          {{!-- Vegetararian / Vegan --}}
+          <div class="form-group col-sm-12 d-flex">
+            <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian" name="isVegetarian" value="true">
+            <label class="mr-4" for="isVegetarian">Vegeterian dish</label>
+            <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegan" name="isVegan" value="true">
+            <label for="isVegan">Vegan dish</label>
+          </div>
+        </div>
+        
+        {{!-- Row 5 --}}
+        <div class="form-row">
+          {{!-- Image --}}
+          <div class="form-group col-sm-12">
+            <label for="image">Recipe Image:</label>
+            <input type="text" class="form-control" id="image" name="image" placeholder="Enter a valid url" value={{recipe.image}}>
+          </div>
+        </div>
+        
+        {{!-- Row 6 --}}
+        <div class="form-row">
+          {{!-- Instructions --}}
+          <div class="form-group col-sm-12">
+            <label for="description">Instructions:</label>
+            <textarea class="form-control" id="description" name="description" rows="4" cols="35" placeholder="Enter step-by-step instuctions how to make the recipe">{{recipe.description}}</textarea>
+          </div>
+        </div>
+        
+        {{!-- Submit Recipe --}}
+        <button type="submit" class="btn btn-warning new-recipe--btn btn-block btn-lg">Edit Recipe</button>
+      </form>
+    </div>
+  </section>
+
+
+
+{{!-- {{#if userInSession}}
  {{>navbar}}
   <section id="add-new-recipe">
     <div class="recipe-card">
@@ -63,7 +175,7 @@
           </form>
         </div>
     </div>
-  </section>
+  </section> --}}
 {{else}}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <ul class="navbar-nav mr-auto">

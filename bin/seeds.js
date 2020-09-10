@@ -14,8 +14,6 @@ const recipes = [
     ingredients: ['milk', 'eggs', 'tomatoes'],
     dishType: 'Breakfast',
     image: 'https://images.media-allrecipes.com/userphotos/720x405/3489951.jpg',
-    title: '1 Bahn Mi',
-    level: 'Easy',
     ingredients: ['milk', 'eggs', 'tomatoes'],
     dishType: 'Breakfast',
     image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20200205-bahn-mi-delish-ehg-9647-jpg-1582818279.jpg?crop=0.676xw:0.507xh;0.308xw,0.293xh&resize=1200:*',
