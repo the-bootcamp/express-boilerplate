@@ -1,38 +1,39 @@
 <section id="recipe-details" style="background-image: url({{recipe.image}})">
-  <div class="recipe-card">
-    <h1 class="recipe-title">{{recipe.title}}</h1>
-    <p class="recipe-lead">{{recipe.description}}</p>
-    <div class="recipe-main">
-      <div class="recipe-ingredients">
-        <h5 class="recipe-ingredients--header">Ingredients</h5>
-        <ul class="recipe-ingredients--list">
-          {{#each recipe.ingredients}}
-            <li class="recipe-ingredients--item">{{this}}</li>
-          {{/each}}
-        </ul>
+  <div class="container">
+    <div class="recipe-card">
+      <h1 class="recipe-title">{{recipe.title}}</h1>
+      <p class="recipe-lead">{{recipe.description}}</p>
+      <div class="recipe-main">
+        <div class="recipe-ingredients">
+          <h5 class="recipe-ingredients--header">Ingredients</h5>
+          <ul class="recipe-ingredients--list">
+            {{#each recipe.ingredients}}
+            <div class="form-check checkbox-warning-filled">
+              <input type="checkbox" class="form-check-input filled-in" id="orangeExample" >
+              <label class="form-check-label" for="orangeExample">{{this}}</label>
+            </div>
+            {{/each}}
+          </ul>
+        </div>
+        <div class="recipe-info">
+          <h6><strong>Level:</strong> {{recipe.level}}</h6>
+          <h6><strong>Type:</strong> {{recipe.dishType}}</h6>
+          <h6><strong>Preparation Time:</strong> {{recipe.preparationTime}} minutes</h6>
+          <h6><strong>Cooking Time:</strong> {{recipe.cookingTime}} minutes</h6>
+          {{#if recipe.isVegetarian}}
+            <h6><strong>Vegetarian:</strong> <i class="fas fa-leaf"></i></h6>
+            
+          {{/if}}
+        </div>   
       </div>
-      <div class="recipe-info">
-        <h6><strong>Level:</strong> {{recipe.level}}</h6>
-        <h6><strong>Type:</strong> {{recipe.dishType}}</h6>
-        <h6><strong>Duration:</strong> {{recipe.duration}} minutes</h6>
-        {{#if recipe.isVegetarian}}
-          <h6><strong>Vegetarian:</strong> <i class="fas fa-leaf"></i></h6>
-          
-        {{/if}}
-      </div>   
-    </div>
 
-    <div class="recipe-directions">
-      <h5 class="recipe-directions--header">Directions</h5>
-      <div class="recipe-directions--step">
-        <span>
-          <i class="fas fa-chevron-circle-right"></i>
-          <h5>Step1</h5>
-        </span>
-        
-        <p>Preheat the oven's broiler. Place the pork chops on a broiling pan and set under the broiler. Cook for about 5 minutes, turning once, or until browned on each side.</p>
+      <div class="recipe-directions">
+        <h5 class="recipe-directions--header">Directions</h5>
+        <div class="recipe-directions--step">
+          <p>{{recipe.description}}</p>
+        </div>
       </div>
+      <p class="recipe-creator">Created by {{username}} at {{format-date recipe.created}}</p>
     </div>
-    <p class="recipe-creator">Created by {{username}} at {{format-date recipe.created}}</p>
   </div>
 </section>
