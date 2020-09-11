@@ -74,7 +74,6 @@
             </div>
           </div>
           
-          
           {{!-- Row 4 --}}
           <div class="form-row">
             {{!-- Vegetararian / Vegan --}}
@@ -171,12 +170,4 @@
   function deleteBadge(event){
     event.path[1].remove();
   }
-  
-  const populateForm = (ev) => {
-    console.log('test: ', {{{recipe}}})
-    document.getElementById('dishType').value = {recipe.dishType};
-
-  }
-  
-  window.addEventListener('load', populateForm)
 </script>
