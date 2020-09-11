@@ -38,7 +38,6 @@ router.post('/signup', (req, res, next) => {
       });
     })
     .then(userFromDB => {
-      console.log('Newly created user is: ', userFromDB);
       req.session.currentUser = userFromDB;
 
       res.redirect('/recipes');
@@ -91,15 +90,12 @@ router.post('/login', (req, res, next) => {
 
 /* GET user profile page */
 router.get('/users/profile', (req, res) => {
-  console.log(req.session)
   const { currentUser } = req.session;
 
   User.findById(currentUser._id)
     .then(userToDisplay => {
-      console.log('this' + userToDisplay)
-      Recipe.find({ creator: userToDisplay._id })
+      Recipe.find({ creator: userToDisplay._id }).sort({createdAt: -1})
         .then(recipesToDisplay => {
-                console.log('recipesToDisplay' + recipesToDisplay)
           res.render('user/userProfile', { recipesToDisplay, userToDisplay, userInSession: req.session.currentUser } );
         })
       })

@@ -11,16 +11,12 @@ const recipes = [
   {
     title: 'Bahn Mi',
     level: 'Easy',
-    ingredients: ['milk', 'eggs', 'tomatoes'],
     dishType: 'Breakfast',
     image: 'https://images.media-allrecipes.com/userphotos/720x405/3489951.jpg',
     ingredients: ['milk', 'eggs', 'tomatoes'],
-    dishType: 'Breakfast',
-    image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/20200205-bahn-mi-delish-ehg-9647-jpg-1582818279.jpg?crop=0.676xw:0.507xh;0.308xw,0.293xh&resize=1200:*',
     preparationTime: 15,
     cookingTime: 30,
     creator: '5f45667d4aeed029bf5bb3fd',
-    created: new Date(),
     isVegetarian: true,
     isVegan: false,
     description: 'Vietnamese sandwich made with chicken, beef or tofu and full of pickled vegetables.',
@@ -35,7 +31,11 @@ const recipes = [
     isVegan: true,
     image: 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F4398987.jpg&w=596&h=399.32000000000005&c=sc&poi=face&q=85',
     description: 'Crisp edges, chewy middles, and so, so easy to make. Try this wildly-popular chocolate chip cookie recipe for yourself.',
-    featuredRecipe: true
+    featuredRecipe: true,
+    preparationTime: 15,
+    ingredients: ['milk', 'eggs', 'tomatoes'],
+    cookingTime: 30,
+    creator: '5f45667d4aeed029bf5bb3fd'
   },
   {
     title: 'Asian Glazed Chicken Thighs',
@@ -45,7 +45,11 @@ const recipes = [
     isVegan: false,
     image: 'https://images.media-allrecipes.com/userphotos/720x405/815964.jpg',
     description: 'Crisp edges, chewy middles, and so, so easy to make. Try this wildly-popular chocolate chip cookie recipe for yourself.',
-    featuredRecipe: true
+    featuredRecipe: true,
+    preparationTime: 15,
+    cookingTime: 30,
+    creator: '5f43667d4aeed029bf5bb3fd',
+    ingredients: ['milk', 'eggs', 'tomatoes'],
   }
 ];
 

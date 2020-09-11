@@ -7,9 +7,8 @@ const router = express.Router();
 
 /* GET recipes page */
 router.get('/recipes', async (req, res) => {
-  console.log('req', req.query)
   let { level, dishType, isVegetarian, isVegan } = req.query;
-    console.log('veg ', isVegetarian)
+
   if (level || dishType || isVegetarian || isVegan) {
     const filter = {};
     if (level) {
@@ -26,14 +25,13 @@ router.get('/recipes', async (req, res) => {
     }
 
 
-    Recipe.find(filter)
+    Recipe.find(filter).sort({createdAt: -1})
     .then(filteredRecipesFromDB => {
-      console.log(filteredRecipesFromDB);
       res.render('./recipes/allRecipes', { recipes: filteredRecipesFromDB, userInSession: req.session.currentUser });
     })
     .catch(error => `Error while getting the list of recipes: ${error}`);
   } else {
-    Recipe.find()
+    Recipe.find().sort({createdAt: -1})
     .then(recipesFromDB => {
       res.render('./recipes/allRecipes', { recipes: recipesFromDB, userInSession: req.session.currentUser });
     })
@@ -132,7 +130,7 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
 
   Recipe.findById(recipeId)
     .then(recipe => {
-      res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser });
+      res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser, asObject: JSON.stringify(recipe) });
     })
     .catch(err =>
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
