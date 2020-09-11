@@ -113,17 +113,20 @@ Get and create food recipes
 
 const recipeSchema = new Schema({
   title: String,
-  level: {String, enum: ['Easy', 'Amateur', 'Professional' ]},
-  ingredients: [ String],
-  dishType: {String, enum: ['breakfast', 'starter','main_course', 'soup', 'snack', 'shake', 'dessert', 'other']},
-  image: {type: String, default: ''},
-  duration: {type: Number, min: 0},
-  creator: String,
-  created: {type: Date, default: Date.now},
-  isVegan: Boolean,
-  isVegetarian: Boolean,
-  Description: String,
-  premiumContent: String
+    level: {type: String, enum: ['Easy', 'Amateur', 'Professional']},
+    ingredients: [String],
+    dishType: {type: String, enum: ['Breakfast', 'Starter', 'Main', 'Soup', 'Snack', 'Shake', 'Dessert', 'Beverage', 'Other']},
+    image: {type: String, default: ''},
+    preparationTime: {type: Number, min: 0},
+    cookingTime: {type: Number, min: 0},
+    creator: String,
+    created: {type: Date, default: Date.now},
+    isVegetarian: Boolean,
+    isVegan: Boolean,
+    description: String,
+    instructions: String,
+    premiumContent: String,
+    featuredRecipe: Boolean
 });
 
 <br>

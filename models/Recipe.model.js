@@ -15,9 +15,9 @@ const recipeSchema = new Schema(
     isVegetarian: Boolean,
     isVegan: Boolean,
     description: String,
+    instructions: String,
     premiumContent: String,
     featuredRecipe: Boolean
-    //image:
   },
   {
     timestamps: true

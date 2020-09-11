@@ -1,16 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <ul class="navbar-nav mr-auto">
-    <a class="navbar-brand" href="/recipes">Logo</a>
-    <li class="nav-item active">
-      <a class="nav-link disabled" href="/">Foodle</a>
-    </li>
-  </ul>
-</nav>
-
 <section id="error-container">
-    <div class="alert text-center" role="alert">
-      <h1>404 Error</h1>
-      <h2>This route does not exist on the app!<br> Check if everything is ok!</h2>
-      <a href="/recipes"><button type="button" class="btn btn-outline-danger btn-lg">Go Back to Recipes</button></a>
-    </div>
+  {{>navbar}}
+  <div class="alert text-center" role="alert">
+    <h1>404 Error</h1>
+    <h2>This route does not exist on the app!<br> Check if everything is ok!</h2>
+    <a href="/recipes"><button type="button" class="btn btn-outline-danger btn-lg">Go Back to Recipes</button></a>
+  </div>
 </section>

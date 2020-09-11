@@ -107,9 +107,9 @@ section {
   width: 200px;
 }
 
-.logo {
-  width: 50px;
-  height: 50px;
+.navbar-logo {
+  width: 30px;
+  height: auto;
   margin: 0 20px;
 }
 
@@ -167,11 +167,17 @@ section {
 }
 
 .landingPage--title {
+  color: #ffc107;
   font-weight: 900;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .landingPage--subtitle {
+  margin-bottom: 40px;
+}
+
+.landingPage-logo {
+  width: 150px;
   margin-bottom: 40px;
 }
 
@@ -414,7 +420,7 @@ section {
 
 .recipe-title {
   text-align: center;
-  margin-bottom: 20px;
+  padding-bottom: 10px;
   font-weight: 700;
   font-size: 32px;
   color: #ffc107;

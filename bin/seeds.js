@@ -9,7 +9,7 @@ require('../configs/db.config');
 // List of recipes
 const recipes = [
   {
-    title: 'Bahn Mi',
+    title: 'Bahn Mi Vietname Sandwich',
     level: 'Easy',
     dishType: 'Breakfast',
     image: 'https://images.media-allrecipes.com/userphotos/720x405/3489951.jpg',
@@ -20,6 +20,7 @@ const recipes = [
     isVegetarian: true,
     isVegan: false,
     description: 'Vietnamese sandwich made with chicken, beef or tofu and full of pickled vegetables.',
+    instructions: '',
     featuredRecipe: true
   },
   {

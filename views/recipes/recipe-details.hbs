@@ -1,18 +1,9 @@
+{{>navbar}}
+
 {{#if userInSession}}   
-  {{>navbar}}
   
   {{>recipeDetails recipe=recipe username=userInSession.username}}
-
 {{else}}
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="navbar-nav mr-auto">
-      <a class="navbar-brand" href="/recipes">Logo</a>
-      <li class="nav-item active">
-        <a class="nav-link disabled" href="/">Foodle</a>
-      </li>
-    </ul>
-  </nav>
-
   <section id="error-container">
     <div class="alert text-center auth--card " role="alert">
       <h1>Error!</h1>
