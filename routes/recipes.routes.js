@@ -7,9 +7,8 @@ const router = express.Router();
 
 /* GET recipes page */
 router.get('/recipes', async (req, res) => {
-  console.log('req', req.query)
   let { level, dishType, isVegetarian, isVegan } = req.query;
-    console.log('veg ', isVegetarian)
+
   if (level || dishType || isVegetarian || isVegan) {
     const filter = {};
     if (level) {
@@ -131,6 +130,8 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
 
   Recipe.findById(recipeId)
     .then(recipe => {
+    console.log('recipe: ', recipe);
+
       res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser });
     })
     .catch(err =>

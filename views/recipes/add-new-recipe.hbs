@@ -17,7 +17,7 @@
             {{!-- Title --}}
             <div class="form-group col-sm-6">
               <label for="title">Title:</label>
-              <input type="text" class="form-control" id="title" name="title" placeholder="Enter recipe title" required value={{title}}>
+              <input type="text" class="form-control" id="title" name="title" placeholder="Enter recipe title" required value="{{title}}">
             </div>
             {{!-- Level --}}
             <div class="form-group col-sm-3">
@@ -52,7 +52,7 @@
             <div class="form-group col-sm-12" id="ingredients-container">
               <label for="ingredients">Ingredients:</label>
               <div class="input-group">
-                <input type="text"  class="form-control" id="ingredients" name="ingredients" placeholder="Enter an ingredient" value={{ingredients}}>
+                <input type="text"  class="form-control" id="ingredients" name="ingredients" placeholder="Enter an ingredient" value="{{ingredients}}">
                 <div class="input-group-append">
                   <button class="btn btn-warning" type="submit" onclick="return getIngredient(this)" name="ingredients">Add Ingredient</button>
                 </div>
@@ -65,12 +65,12 @@
             {{!-- Preparation Time --}}
             <div class="form-group col-sm-6">
               <label for="preparation">Preparation Time:</label>
-              <input type="number" class="form-control" id="preparation" name="preparation" placeholder="Enter in minutes" required value={{preparationTime}}>
+              <input type="number" class="form-control" id="preparation" name="preparation" placeholder="Enter in minutes" required value="{{preparationTime}}">
             </div>
             {{!-- Cooking Time --}}
             <div class="form-group col-sm-6">
               <label for="cooking">Cooking Time:</label>
-              <input type="number" class="form-control" id="cooking" name="cooking" placeholder="Enter in minutes" required value={{cookingTime}}>
+              <input type="number" class="form-control" id="cooking" name="cooking" placeholder="Enter in minutes" required value="{{cookingTime}}">
             </div>
           </div>
           
@@ -91,7 +91,7 @@
             {{!-- Image --}}
             <div class="form-group col-sm-12">
               <label for="image">Recipe Image:</label>
-              <input type="text" class="form-control" id="image" name="image" placeholder="Enter a valid url" required value={{image}}>
+              <input type="text" class="form-control" id="image" name="image" placeholder="Enter a valid url" required value="{{image}}">
             </div>
           </div>
           
