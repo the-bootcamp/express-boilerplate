@@ -97,7 +97,7 @@ router.get('/users/profile', (req, res) => {
   User.findById(currentUser._id)
     .then(userToDisplay => {
       console.log('this' + userToDisplay)
-      Recipe.find({ creator: userToDisplay._id })
+      Recipe.find({ creator: userToDisplay._id }).sort({createdAt: -1})
         .then(recipesToDisplay => {
                 console.log('recipesToDisplay' + recipesToDisplay)
           res.render('user/userProfile', { recipesToDisplay, userToDisplay, userInSession: req.session.currentUser } );

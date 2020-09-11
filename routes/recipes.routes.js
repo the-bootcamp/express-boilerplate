@@ -26,14 +26,13 @@ router.get('/recipes', async (req, res) => {
     }
 
 
-    Recipe.find(filter)
+    Recipe.find(filter).sort({createdAt: -1})
     .then(filteredRecipesFromDB => {
-      console.log(filteredRecipesFromDB);
       res.render('./recipes/allRecipes', { recipes: filteredRecipesFromDB, userInSession: req.session.currentUser });
     })
     .catch(error => `Error while getting the list of recipes: ${error}`);
   } else {
-    Recipe.find()
+    Recipe.find().sort({createdAt: -1})
     .then(recipesFromDB => {
       res.render('./recipes/allRecipes', { recipes: recipesFromDB, userInSession: req.session.currentUser });
     })
