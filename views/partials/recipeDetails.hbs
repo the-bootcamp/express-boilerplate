@@ -8,10 +8,11 @@
           <h5 class="recipe-ingredients--header">Ingredients</h5>
           <ul class="recipe-ingredients--list">
             {{#each recipe.ingredients}}
-            <div class="form-check checkbox-warning-filled">
-              <input type="checkbox" class="form-check-input filled-in" id="orangeExample" >
-              <label class="form-check-label" for="orangeExample">{{this}}</label>
-            </div>
+            <label class="custom-control custom-checkbox">
+              <input type="checkbox" id="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-label">{{this}}</span>
+            </label>
             {{/each}}
           </ul>
         </div>

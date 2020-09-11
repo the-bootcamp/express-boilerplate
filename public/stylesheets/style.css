@@ -347,6 +347,20 @@ section {
   background-color: #ffc107;
 }
 
+.form-check {
+  padding-left: 0;
+}
+
+.custom-checkbox {
+  margin-bottom: 5px;
+  
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+  color: white !important;
+  background-color: #ffc107 !important;
+}
+
 .new-recipe--btn {
   text-align: center;
   }
@@ -410,15 +424,14 @@ section {
   font-size: 20px;
   line-height: 1.3;
   border-top: 1px solid #ffc107; 
-  border-bottom: 1px solid #ddd; 
   padding: 20px 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .recipe-main {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .recipe-info {
@@ -432,10 +445,8 @@ section {
 }
 
 .recipe-directions {
-  margin: 20px 0;
-  padding-top: 20px;
-  border-top: 1px solid #ddd; 
-  border-bottom: 1px solid #ddd; 
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ffc107; 
 }
 
 .recipe-directions--header,
