@@ -170,4 +170,11 @@
   function deleteBadge(event){
     event.path[1].remove();
   }
+
+  const populateForm = () => {
+    document.getElementById('dishType').value = {{{asString}}}.dishType;
+    document.getElementById('level').value = {{{asString}}}.level;
+  }
+
+  window.addEventListener('DOMContentLoaded', populateForm)
 </script>

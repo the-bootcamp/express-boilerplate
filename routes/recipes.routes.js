@@ -130,7 +130,7 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
 
   Recipe.findById(recipeId)
     .then(recipe => {
-      res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser });
+      res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser, asObject: JSON.stringify(recipe) });
     })
     .catch(err =>
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
