@@ -130,8 +130,6 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
 
   Recipe.findById(recipeId)
     .then(recipe => {
-    console.log('recipe: ', recipe);
-
       res.render('recipes/edit-recipe', { recipe, userInSession: req.session.currentUser });
     })
     .catch(err =>
