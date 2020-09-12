@@ -1,6 +1,6 @@
 {{#if userInSession}}   
   {{>navbar}}
-  <section id="add-new-recipe">
+  <section id="edit-recipe">
     <div class="container">
       <div class="recipe-card">
         <h1 class="recipe-card-title text-center">{{recipe.title}}</h1>
@@ -11,7 +11,7 @@
         {{/each}}
 
         {{!-- Form  --}}
-        <form id="add-recipe-form" action="/recipes/{{recipe._id}}/edit" method="POST">
+        <form id="edit-recipe-form" action="/recipes/{{recipe._id}}/edit" method="POST">
           {{!-- Row 1 --}}
           <div class="form-row">
             {{!-- Title --}}
@@ -52,7 +52,7 @@
             <div class="form-group col-sm-12" id="ingredients-container">
               <label for="ingredients">Ingredients:</label>
               <div class="input-group">
-                <input type="text"  class="form-control" id="ingredients" name="ingredients" placeholder="Enter an ingredient" value="{{recipe.ingredients}}">
+                <input type="text" class="form-control" id="ingredients" name="ingredients" placeholder="Enter an ingredient" value="{{recipe.ingredients}}">
                 <div class="input-group-append">
                   <button class="btn btn-warning" type="submit" onclick="return getIngredient(this)" name="ingredients">Add Ingredient</button>
                 </div>
@@ -99,7 +99,7 @@
             {{!-- Description --}}
             <div class="form-group col-sm-12">
               <label for="description">Description:</label>
-              <textarea class="form-control" id="description" name="description" rows="4" cols="35" placeholder="Enter a description for your recipe" {{recipe.description}}required></textarea>
+              <textarea class="form-control" id="description" name="description" rows="4" cols="35" placeholder="Enter a description for your recipe" required>{{recipe.description}}</textarea>
             </div>
           </div>
 
@@ -108,7 +108,7 @@
             {{!-- Instructions --}}
             <div class="form-group col-sm-12">
               <label for="instructions">Instructions:</label>
-              <textarea class="form-control" id="instructions" name="instructions" rows="4" cols="35" placeholder="Enter step-by-step instuctions how to make the recipe" {{recipe.instructions}}required></textarea>
+              <textarea class="form-control" id="instructions" name="instructions" rows="4" cols="35" placeholder="Enter step-by-step instuctions how to make the recipe" required>{{recipe.instructions}}</textarea>
             </div>
           </div>
           
@@ -130,11 +130,9 @@
 {{/if}}
 
 <script>
-  const formContainer = document.getElementById('add-recipe-form');
+  const formContainer = document.getElementById('edit-recipe-form');
   const ingredientContainer = document.getElementById('ingredients-container');
   const ingredientInput = document.getElementById('ingredients');
-  
-  
   let ingredients = [];
 
   const createBadge = (ingredient) => {
@@ -164,16 +162,13 @@
 
   formContainer.addEventListener('submit', (e) => {
       e.preventDefault();
-      formContainer.ingredients.value = ingredients;
+      ingredientInput.value = ingredients;
       formContainer.submit();
   })
 
   function deleteBadge(event){
     event.path[1].remove();
   }
-<<<<<<< HEAD
-  
-=======
 
   const populateForm = () => {
     document.getElementById('dishType').value = {{{asObject}}}.dishType;
@@ -181,5 +176,4 @@
   }
 
   window.addEventListener('DOMContentLoaded', populateForm)
->>>>>>> 6bba3644b9f2275fc3ae504bad4b2bfc3fd7bb6a
 </script>

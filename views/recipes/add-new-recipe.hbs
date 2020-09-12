@@ -99,7 +99,7 @@
             {{!-- Description --}}
             <div class="form-group col-sm-12">
               <label for="description">Description:</label>
-              <textarea class="form-control" id="description" name="description" rows="4" cols="35" placeholder="Enter a description for your recipe" {{description}} required></textarea>
+              <textarea class="form-control" id="description" name="description" rows="4" cols="35" placeholder="Enter a description for your recipe" required>{{description}} </textarea>
             </div>
           </div>
 
@@ -108,7 +108,7 @@
             {{!-- Instructions --}}
             <div class="form-group col-sm-12">
               <label for="instructions">Instructions:</label>
-              <textarea class="form-control" id="instructions" name="instructions" rows="4" cols="35" placeholder="Enter step-by-step instuctions how to make the recipe" {{instructions}} required></textarea>
+              <textarea class="form-control" id="instructions" name="instructions" rows="4" cols="35" placeholder="Enter step-by-step instuctions how to make the recipe" required>{{instructions}}</textarea>
             </div>
           </div>
           
@@ -176,12 +176,11 @@
 
   formContainer.addEventListener('submit', (e) => {
       e.preventDefault();
-      formContainer.ingredients.value = ingredients;
+      ingredientInput.value = ingredients;
       formContainer.submit();
   })
 
   function deleteBadge(event){
     event.path[1].remove();
   }
-  
 </script>

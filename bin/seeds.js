@@ -36,6 +36,7 @@ const recipes = [
     preparationTime: 15,
     ingredients: ['milk', 'eggs', 'tomatoes'],
     cookingTime: 30,
+    instructions: '',
     creator: '5f45667d4aeed029bf5bb3fd'
   },
   {
@@ -49,6 +50,7 @@ const recipes = [
     featuredRecipe: true,
     preparationTime: 15,
     cookingTime: 30,
+    instructions: '',
     creator: '5f43667d4aeed029bf5bb3fd',
     ingredients: ['milk', 'eggs', 'tomatoes'],
   }
