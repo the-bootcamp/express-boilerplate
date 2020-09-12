@@ -6,15 +6,7 @@
       <div class="recipe-main">
         <div class="recipe-ingredients">
           <h5 class="recipe-ingredients--header">Ingredients</h5>
-          <ul class="recipe-ingredients--list">
-            {{#each recipe.ingredients}}
-            <label class="custom-control custom-checkbox">
-              <input type="checkbox" id="checkbox" class="custom-control-input">
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-label">{{this}}</span>
-            </label>
-            {{/each}}
-          </ul>
+          <ul id="ingredients-list" class="recipe-ingredients--list"></ul>
         </div>
         <div class="recipe-info">
           <h6><strong>Level:</strong> {{recipe.level}}</h6>
@@ -44,3 +36,34 @@
     </div>
   </div>
 </section>
+
+<script>
+  const splitIngredients = () => {
+    const {ingredients} = {{{asObject}}};
+    
+    const ingredientsList = document.getElementById('ingredients-list');
+
+    const ingredientInput = `<input type="checkbox" id="checkbox" class="custom-control-input">`;
+    const ingredientIndicator = `<span class="custom-control-indicator"></span>`;
+
+    ingredients[0].split(',').map((ingredient) => {
+      const ingredientContainer = document.createElement('label');
+      ingredientContainer.classList.add('custom-control', 'custom-checkbox')
+      
+      const ingredientLabel = document.createElement('span');
+      ingredientLabel.classList.add('custom-control-label');
+      ingredientLabel.textContent = ingredient;
+
+      ingredientContainer.innerHTML += ingredientInput;
+      ingredientContainer.innerHTML += ingredientIndicator;
+      ingredientContainer.appendChild(ingredientLabel);
+
+      ingredientsList.appendChild(ingredientContainer);
+    })
+  }
+
+  window.addEventListener('DOMContentLoaded', splitIngredients);
+  window.addEventListener('beforeUnload', () => {
+    window.removeEventListener('DOMContentLoaded', splitIngredients);
+  });
+</script>

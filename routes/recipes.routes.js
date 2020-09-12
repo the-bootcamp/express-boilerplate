@@ -39,17 +39,13 @@ router.post('/create', (req, res) => {
   const creator = req.session.currentUser._id;
   const errors = [];
   ingredients = ingredients;
-  // duration = Number(duration);
+
   if(!title) {
     errors.push({ text: 'Please add a title' });
   }
   if(!ingredients) {
     errors.push({ text: 'Please add some ingredients' });
   }
-  // if(!duration) {
-  //   errors.push({ text: 'Please add the time' });
-  //   return;
-  // }
   if(!description) {
     errors.push({ text: 'Please add a description' });
   }
@@ -65,6 +61,8 @@ router.post('/create', (req, res) => {
       ingredients,
       isVegan,
       isVegetarian,
+      description,
+      instructions,
       userInSession: req.session.currentUser
     });
   } else {
@@ -81,8 +79,8 @@ router.post('/create', (req, res) => {
       description,
       instructions,
       creator
-    })
-    .then(() => res.redirect('/recipes'))
+    }, {new: true})
+    .then((recipes) => res.redirect(`/recipes/${recipes[0]._id}`))
     .catch(error => {console.log('error ', error);
     `Error while creating a new recipe: ${error}`});
   }
@@ -97,17 +95,20 @@ router.get('/recipes/search', (req, res) => {
     })
     .catch(err => res.render('error', {error: err}));
 });
+
 /* GET recipe details */
 router.get('/recipes/:recipeId', (req, res) => {
   const { recipeId } = req.params;
+
   Recipe.findById(recipeId)
     .then(recipe => {
-      res.render('recipes/recipe-details', { recipe, userInSession: req.session.currentUser });
+      res.render('recipes/recipe-details', { recipe, userInSession: req.session.currentUser, asObject: JSON.stringify(recipe) });
     })
     .catch(err =>
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
     );
 });
+
 /* Edit recipe*/
 router.get('/recipes/:recipeId/edit', (req, res) => {
   const { recipeId } = req.params;
@@ -119,17 +120,20 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
       console.log(`Err while getting the specific recipe from the  DB: ${err}`)
     );
 });
+
 router.post('/recipes/:recipeId/edit', (req, res) => {
   const { recipeId } = req.params;
   const {  title, level, ingredients, dishType, image, preparationTime, cookingTime, isVegetarian = false, isVegan = false, description, instructions } = req.body;
+
   Recipe.findByIdAndUpdate(
     recipeId,
     { title, level, ingredients, dishType, image, preparationTime, cookingTime,  isVegetarian, isVegan, description, instructions },
     { new: true }
   )
-    .then(updatedRecipe => res.redirect(`/recipes/${updatedRecipe._id}`))
+    .then(updatedRecipe => {console.log('updatedRecipe._id: ', updatedRecipe._id); res.redirect(`/recipes/${updatedRecipe._id}`)})
     .catch(error =>
       console.log(`Error while updating a single recipe: ${error}`)
     );
 });
+
 module.exports = router;
