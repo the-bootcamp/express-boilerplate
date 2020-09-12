@@ -11,7 +11,7 @@
         {{/each}}
 
         {{!-- Form  --}}
-        <form id="add-recipe-form" action="/create" method="POST">
+        <form id="add-recipe-form" action="/recipes/{{recipe._id}}/edit" method="POST">
           {{!-- Row 1 --}}
           <div class="form-row">
             {{!-- Title --}}
