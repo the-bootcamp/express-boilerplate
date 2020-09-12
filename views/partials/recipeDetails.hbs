@@ -46,7 +46,7 @@
     const ingredientInput = `<input type="checkbox" id="checkbox" class="custom-control-input">`;
     const ingredientIndicator = `<span class="custom-control-indicator"></span>`;
 
-    ingredients[0].split(',').map((ingredient) => {
+    ingredients.map((ingredient) => {
       const ingredientContainer = document.createElement('label');
       ingredientContainer.classList.add('custom-control', 'custom-checkbox')
       

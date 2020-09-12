@@ -173,9 +173,9 @@
   const populateForm = () => {
     document.getElementById('dishType').value = {{{asObject}}}.dishType;
     document.getElementById('level').value = {{{asObject}}}.level;
-    const ingredients = {{{asObject}}}.ingredients[0];
+    const ingredients = {{{asObject}}}.ingredients;
 
-    ingredients.split(',').map((ingredient) => {
+    ingredients.map((ingredient) => {
       createBadge(ingredient);
     });
   }

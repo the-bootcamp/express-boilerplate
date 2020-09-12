@@ -61,14 +61,6 @@ const recipes = [
     Heat a lightly oiled griddle or frying pan over medium high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake. Cook until pancakes are golden brown on both sides; serve hot.`,
     creator: '5f45667d4aeed029bf5bb3fd',
     featuredRecipe: true,
-<<<<<<< HEAD
-=======
-    preparationTime: 15,
-    ingredients: ['milk', 'eggs', 'tomatoes'],
-    cookingTime: 30,
-    instructions: '',
-    creator: '5f45667d4aeed029bf5bb3fd'
->>>>>>> afb04c0cb3f49ce16323b7ef82aa6a9e249d8e17
   },
   {
     title: 'Tamarind Potato Curry',
@@ -77,7 +69,6 @@ const recipes = [
     image: 'https://149366112.v2.pressablecdn.com/wp-content/uploads/2019/04/heavenly-vegan-dals-tamarind-potato-curry-1.jpg',
     ingredients: ['potatoes', 'tamarind paste', 'tomatoes', 'garlic', 'ginger', 'red pepper', 'coconut sugar', 'sesame seeds', 'sugar'],
     preparationTime: 15,
-<<<<<<< HEAD
     cookingTime: 15,
     creator: '5f45667d4aeed029bf5bb3fd',
     isVegetarian: true,
@@ -98,12 +89,6 @@ const recipes = [
      Step 5
      Garnish with some extra sesame seeds and serve hot with a lentil dish and plain white rice.`,
     featuredRecipe: true
-=======
-    cookingTime: 30,
-    instructions: '',
-    creator: '5f43667d4aeed029bf5bb3fd',
-    ingredients: ['milk', 'eggs', 'tomatoes'],
->>>>>>> afb04c0cb3f49ce16323b7ef82aa6a9e249d8e17
   }
 ];
 

@@ -38,7 +38,7 @@ router.post('/create', (req, res) => {
   let { title, level, ingredients, dishType, image, preparationTime, cookingTime, isVegetarian = false, isVegan = false, description, instructions } = req.body;
   const creator = req.session.currentUser._id;
   const errors = [];
-  ingredients = ingredients;
+  ingredients = ingredients.split(',');
 
   if(!title) {
     errors.push({ text: 'Please add a title' });
@@ -123,8 +123,10 @@ router.get('/recipes/:recipeId/edit', (req, res) => {
 
 router.post('/recipes/:recipeId/edit', (req, res) => {
   const { recipeId } = req.params;
-  const {  title, level, ingredients, dishType, image, preparationTime, cookingTime, isVegetarian = false, isVegan = false, description, instructions } = req.body;
-
+  const {  title, level, dishType, image, preparationTime, cookingTime, isVegetarian = false, isVegan = false, description, instructions } = req.body;
+  let { ingredients } = req.body;
+  ingredients = ingredients.split(',');
+  
   Recipe.findByIdAndUpdate(
     recipeId,
     { title, level, ingredients, dishType, image, preparationTime, cookingTime,  isVegetarian, isVegan, description, instructions },
