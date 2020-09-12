@@ -182,5 +182,6 @@
 
   function deleteBadge(event){
     event.path[1].remove();
+    ingredients = ingredients.filter(ingredient => ingredient !== event.path[1].textContent.trim())
   }
 </script>
