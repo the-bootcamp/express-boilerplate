@@ -172,8 +172,8 @@
   }
 
   const populateForm = () => {
-    document.getElementById('dishType').value = {{{asString}}}.dishType;
-    document.getElementById('level').value = {{{asString}}}.level;
+    document.getElementById('dishType').value = {{{asObject}}}.dishType;
+    document.getElementById('level').value = {{{asObject}}}.level;
   }
 
   window.addEventListener('DOMContentLoaded', populateForm)
