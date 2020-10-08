@@ -1,0 +1,185 @@
+{{#if userInSession}}   
+  {{>navbar}}
+  <section id="edit-recipe">
+    <div class="container">
+      <div class="recipe-card">
+        <h1 class="recipe-card-title text-center">{{recipe.title}}</h1>
+        {{#each errors}}
+          <div class="error">
+            <p>{{text}}</p>
+          </div>
+        {{/each}}
+
+        {{!-- Form  --}}
+        <form id="edit-recipe-form" action="/recipes/{{recipe._id}}/edit" method="POST">
+          {{!-- Row 1 --}}
+          <div class="form-row">
+            {{!-- Title --}}
+            <div class="form-group col-sm-6">
+              <label for="title">Title:</label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="Enter recipe title" required value="{{recipe.title}}">
+            </div>
+            {{!-- Level --}}
+            <div class="form-group col-sm-3">
+              <label for="level">Level:</label>
+              <select class="form-control" id="level" name="level" required>
+                <option value="">Choose...</option>
+                <option value="Easy">Easy</option>
+                <option value="Amateur">Amateur</option>
+                <option value="Professional">Professional</option>
+              </select>
+            </div>
+            {{!-- Dish Type --}}
+            <div class="form-group col-sm-3">
+              <label for="dishType">Dish Type:</label>
+              <select class="form-control" id="dishType" name="dishType" required>
+                <option value="">Choose...</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Starter">Starter</option>
+                <option value="Main">Main Course</option>
+                <option value="Soup">Soup</option>
+                <option value="Snack">Snack</option>
+                <option value="Shake">Shake</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          {{!-- Row 2 --}}
+          <div class="form-row">
+            {{!-- Ingredients --}}
+            <div class="form-group col-sm-12" id="ingredients-container">
+              <label for="ingredients">Ingredients:</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="ingredients" name="ingredients" placeholder="Enter an ingredient" value="{{recipe.ingredients}}">
+                <div class="input-group-append">
+                  <button class="btn btn-warning" type="submit" onclick="return getIngredient(this)" name="ingredients">Add Ingredient</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {{!-- Row 3 --}}
+          <div class="form-row">
+            {{!-- Preparation Time --}}
+            <div class="form-group col-sm-6">
+              <label for="preparation">Preparation Time:</label>
+              <input type="number" class="form-control" id="preparation" name="preparationTime" placeholder="Enter in minutes" required value="{{recipe.preparationTime}}">
+            </div>
+            {{!-- Cooking Time --}}
+            <div class="form-group col-sm-6">
+              <label for="cooking">Cooking Time:</label>
+              <input type="number" class="form-control" id="cooking" name="cookingTime" placeholder="Enter in minutes" required value="{{recipe.cookingTime}}">
+            </div>
+          </div>
+          
+          {{!-- Row 4 --}}
+          <div class="form-row">
+            {{!-- Vegetararian / Vegan --}}
+            <div class="form-group col-sm-12 d-flex">
+              <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegetarian" name="isVegetarian" value="true">
+              <label class="mr-4" for="isVegetarian">Vegeterian dish</label>
+              <input class="new-recipe--checkbox mr-2" type="checkbox" id="isVegan" name="isVegan" value="true">
+              <label for="isVegan">Vegan dish</label>
+            </div>
+          </div>
+          
+          {{!-- Row 5 --}}
+          <div class="form-row">
+            {{!-- Image --}}
+            <div class="form-group col-sm-12">
+              <label for="image">Recipe Image:</label>
+              <input type="text" class="form-control" id="image" name="image" placeholder="Enter a valid url" required value="{{recipe.image}}">
+            </div>
+          </div>
+          
+          {{!-- Row 6 --}}
+          <div class="form-row">
+            {{!-- Description --}}
+            <div class="form-group col-sm-12">
+              <label for="description">Description:</label>
+              <textarea class="form-control" id="description" name="description" rows="4" cols="35" placeholder="Enter a description for your recipe" required>{{recipe.description}}</textarea>
+            </div>
+          </div>
+
+          {{!-- Row 7 --}}
+          <div class="form-row">
+            {{!-- Instructions --}}
+            <div class="form-group col-sm-12">
+              <label for="instructions">Instructions:</label>
+              <textarea class="form-control" id="instructions" name="instructions" rows="4" cols="35" placeholder="Enter step-by-step instuctions how to make the recipe" required>{{recipe.instructions}}</textarea>
+            </div>
+          </div>
+          
+          {{!-- Submit Recipe --}}
+          <button type="submit" class="btn btn-warning new-recipe--btn btn-block btn-lg">Edit Recipe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+{{else}}
+  <section id="error-container">
+    <div class="alert text-center auth--card " role="alert">
+      <h1>Error!</h1>
+      <h2>Still no logged in user, sorry!</h2>
+      <a href="/login"><button type="button" class="btn btn-outline-danger btn-lg">Log in</button></a>
+      <a href="/signup"><button type="button" class="btn btn-outline-danger btn-lg">Sign up</button></a>
+    </div>
+  </section>
+{{/if}}
+
+<script>
+  const formContainer = document.getElementById('edit-recipe-form');
+  const ingredientContainer = document.getElementById('ingredients-container');
+  const ingredientInput = document.getElementById('ingredients');
+  let ingredients = [];
+
+  const createBadge = (ingredient) => {
+    const badge = document.createElement('span');
+    badge.classList.add("badge", "badge-pill", "badge-warning");
+    badge.innerHTML +=
+    `
+    ${ingredient} 
+    <i class="fas fa-times" onclick="deleteBadge(event)"></i>
+    `
+
+    if (ingredient !== '') {
+      ingredients.push(ingredient);
+    }
+
+    ingredientInput.value = '';
+    ingredientContainer.appendChild(badge);
+  }
+
+  function getIngredient(btn) {
+    event.preventDefault();
+
+    document.getElementById("ingredients").value 
+    const ingredient = ingredientInput.value;
+    createBadge(ingredient);
+  }
+
+  formContainer.addEventListener('submit', (e) => {
+      e.preventDefault();
+      ingredientInput.value = ingredients;
+      formContainer.submit();
+  })
+
+  function deleteBadge(event){
+    event.path[1].remove();
+    ingredients = ingredients.filter(ingredient => ingredient !== event.path[1].textContent.trim())
+  }
+
+  const populateForm = () => {
+    document.getElementById('dishType').value = {{{asObject}}}.dishType;
+    document.getElementById('level').value = {{{asObject}}}.level;
+    const ingredients = {{{asObject}}}.ingredients;
+
+    ingredients.map((ingredient) => {
+      createBadge(ingredient);
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', populateForm)
+</script>

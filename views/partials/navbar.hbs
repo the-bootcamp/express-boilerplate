@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <img src="/images/foodle-logo1.png" alt="Foodle logo" class="navbar-logo">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link navbar--color" href="/recipes">All Recipes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  navbar--color" href="/create">Add Recipe</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle  navbar--color" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Explore
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <form action="/recipes" method="GET">
+              <div class="form-group">
+                <label for="level-input">Level</label>
+                <select class="form-control" id="level-input" name="level">
+                  <option value=''>All levels</option>
+                  <option>Easy</option>
+                  <option>Amateur</option>
+                  <option>Professional</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="dishType-input">Type</label>
+                <select class="form-control" id="dishType-input" name="dishType">
+                  <option value=''>All dish types</option>
+                  <option>Breakfast</option>
+                  <option>Starter</option>
+                  <option>Main Course</option>
+                  <option>Soup</option>
+                  <option>Snack</option>
+                  <option>Shake</option>
+                  <option>Dessert</option>
+                  <option>Beverage</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-group form-group--veg">
+                <input class="new-recipe--checkbox mr-3" type="checkbox" id="isVegetarian-input" name="isVegetarian" value="true">
+                <label for="isVegetarian">Vegeterian dish</label>
+              </div>
+              <div class="form-group form-group--veg">
+                <input class="new-recipe--checkbox mr-3" type="checkbox" id="isVegan-input" name="isVegan" value="true">
+                <label for="isVegan">Vegan dish</label><br>
+              </div>
+              <button type="submit" class="btn btn-warning btn-block auth--btn">Apply</button>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <form class="form-inline my-2 my-lg-0" action="/recipes/search" method="GET">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="term">
+        <button class="btn btn-warning my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="nav-buttons">
+      <a href="/users/profile">
+        <button class="btn btn-outline-warning mr-2">My Profile</button>
+      </a>
+      <form id="logout-form" action="/logout" method="POST">
+        <button type="submit" class="btn btn-warning">Logout</button>
+      </form>
+    </div>
+
+  </div>
+</nav>

@@ -1,0 +1,65 @@
+<section id="recipe-details" style="background-image: url({{recipe.image}})">
+  <div class="container">
+    <div class="recipe-card">
+      <h1 class="recipe-title">{{recipe.title}}</h1>
+      <p class="recipe-lead">{{recipe.description}}</p>
+      <div class="recipe-main">
+        <div class="recipe-ingredients">
+          <h5 class="recipe-ingredients--header">Ingredients</h5>
+          <ul id="ingredients-list" class="recipe-ingredients--list"></ul>
+        </div>
+        <div class="recipe-info">
+          <h6><strong>Level:</strong> {{recipe.level}}</h6>
+          <h6><strong>Type:</strong> {{recipe.dishType}}</h6>
+          <h6><strong>Preparation Time:</strong> {{recipe.preparationTime}} minutes</h6>
+          <h6><strong>Cooking Time:</strong> {{recipe.cookingTime}} minutes</h6>
+          {{#if recipe.isVegetarian}}
+            <h6><strong>Vegetarian:</strong> <i class="fas fa-leaf"></i></h6>
+          {{/if}}
+          {{#if recipe.isVegan}}
+            <h6><strong>Vegan:</strong> <i class="fas fa-leaf"></i></h6>
+          {{/if}}
+        </div>   
+      </div>
+
+      <div class="recipe-directions">
+        <h5 class="recipe-directions--header">Instructions</h5>
+        <div class="recipe-instructions--step">
+          <p>{{recipe.instructions}}</p>
+        </div>
+      </div>
+      <p class="recipe-creator">Created by {{username}} at {{format-date recipe.created}}</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const splitIngredients = () => {
+    const {ingredients} = {{{asObject}}};
+    
+    const ingredientsList = document.getElementById('ingredients-list');
+
+    const ingredientInput = `<input type="checkbox" id="checkbox" class="custom-control-input">`;
+    const ingredientIndicator = `<span class="custom-control-indicator"></span>`;
+
+    ingredients.map((ingredient) => {
+      const ingredientContainer = document.createElement('label');
+      ingredientContainer.classList.add('custom-control', 'custom-checkbox')
+      
+      const ingredientLabel = document.createElement('span');
+      ingredientLabel.classList.add('custom-control-label');
+      ingredientLabel.textContent = ingredient;
+
+      ingredientContainer.innerHTML += ingredientInput;
+      ingredientContainer.innerHTML += ingredientIndicator;
+      ingredientContainer.appendChild(ingredientLabel);
+
+      ingredientsList.appendChild(ingredientContainer);
+    })
+  }
+
+  window.addEventListener('DOMContentLoaded', splitIngredients);
+  window.addEventListener('beforeUnload', () => {
+    window.removeEventListener('DOMContentLoaded', splitIngredients);
+  });
+</script>

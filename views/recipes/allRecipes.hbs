@@ -1,0 +1,95 @@
+{{#if userInSession}}    
+<section id="recipes">
+  {{>navbar}}
+  <div class="container">
+    {{!-- Featured Recipe Box --}}
+    <div class="featured-recipes">
+      <h1 class="recipes--title text-center">Featured Recipes</h1>        
+            
+      {{!-- Featured Recipes Slider --}}
+      <div class="container" id="anchorJump">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            {{#each recipes}}
+              {{#if this.featuredRecipe}}
+              <div class="carousel-item">
+                <div class="container-fluid">
+                  <a href="/recipes/{{_id}}">
+                    <h2 class="featured-header text-center">{{title}}</h2>
+                  </a>
+                  <div class="row">
+                    <div class="col-md-6 featured-info">
+                        <div class="featured-description">
+                          <p class="featured-lead">{{description}}</p>
+                        </div>
+                        <div class="featured-info">
+                          <h6><strong>Level:</strong> {{level}}</h6>
+                          <h6><strong>Type:</strong> {{dishType}}</h6>
+                          <h6><strong>Preparation Time:</strong> {{preparationTime}} minutes</h6>
+                          <h6><strong>Cooking Time:</strong> {{cookingTime}} minutes</h6>
+                          {{#if isVegetarian}}
+                            <h6><strong>Vegetarian:</strong> <i class="fas fa-leaf"></i></h6>
+                          {{/if}}
+                          {{#if isVegan}}
+                            <h6><strong>Vegan:</strong> <i class="fas fa-leaf"></i></h6>
+                          {{/if}}
+                        </div>
+                    
+                    </div>
+                    <div class="col-md-6">
+                      <div class="featured-img">
+                        <img class="d-block w-100 carousel-img" src="{{image}}" alt="First slide">   
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              {{/if}}
+            {{/each}}
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Added Recipe Box --}}
+    <div class="added-recipes">
+      <h1 class="recipes--title text-center">Newest Recipes</h1>
+      <div class="card-deck">
+        <div class="row equal">
+          {{#each recipes}}
+            {{> recipeCard }}
+          {{/each}}
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>
+
+{{else}}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <ul class="navbar-nav mr-auto">
+    <a class="navbar-brand" href="/recipes">Logo</a>
+    <li class="nav-item active">
+      <a class="nav-link disabled" href="/">Foodle</a>
+    </li>
+  </ul>
+</nav>
+
+<section id="error-container">
+  <div class="alert text-center auth--card " role="alert">
+    <h1>Error!</h1>
+    <h2>Still no logged in user, sorry!</h2>
+    <a href="/login"><button type="button" class="btn btn-outline-danger btn-lg">Log in</button></a>
+    <a href="/signup"><button type="button" class="btn btn-outline-danger btn-lg">Sign up</button></a>
+  </div>
+</section>
+{{/if}}

@@ -1,0 +1,17 @@
+{{>navbar}}
+
+{{#if userInSession}}   
+  
+  {{>recipeDetails recipe=recipe username=userInSession.username}}
+{{else}}
+  <section id="error-container">
+    <div class="alert text-center auth--card " role="alert">
+      <h1>Error!</h1>
+      <h2>Still no logged in user, sorry!</h2>
+      <a href="/login"><button type="button" class="btn btn-outline-danger btn-lg">Log in</button></a>
+      <a href="/signup"><button type="button" class="btn btn-outline-danger btn-lg">Sign up</button></a>
+    </div>
+  </section>
+{{/if}}
+
+  
